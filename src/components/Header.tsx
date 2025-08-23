@@ -1,82 +1,108 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Home, User, Code, Briefcase, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-  const navItems = [
-    { href: '#home', label: 'Home', icon: Home },
-    { href: '#about', label: 'About', icon: User },
-    { href: '#projects', label: 'Projects', icon: Code },
-    { href: '#experience', label: 'Experience', icon: Briefcase },
-    { href: '#contact', label: 'Contact', icon: Mail },
-  ];
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMobileMenuOpen(false);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    closeMenu();
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-    }`}>
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-            DataSci Portfolio
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors link-underline ripple"
+            >
+              DS
+            </button>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          <nav className="hidden md:flex items-center space-x-8">
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="nav-item ripple"
+            >
+              About
+            </button>
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="nav-item ripple"
+            >
+              Projects
+            </button>
+            <button 
+              onClick={() => scrollToSection('experience')}
+              className="nav-item ripple"
+            >
+              Experience
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="nav-item ripple"
+            >
+              Contact
+            </button>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMenu}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors ripple icon-interactive"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
-            <div className="py-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="flex items-center space-x-3 w-full px-6 py-3 text-left hover:bg-gray-50 transition-colors"
-                >
-                  <item.icon size={20} />
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </div>
+        {isMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white">
+            <nav className="py-4 space-y-2">
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
+              >
+                About
+              </button>
+              <button 
+                onClick={() => scrollToSection('projects')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
+              >
+                Projects
+              </button>
+              <button 
+                onClick={() => scrollToSection('experience')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
+              >
+                Experience
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
+              >
+                Contact
+              </button>
+            </nav>
           </div>
         )}
-      </nav>
+      </div>
     </header>
   );
 };

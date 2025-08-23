@@ -1,179 +1,217 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, Github, ChevronRight, Brain, BarChart3, Eye, MessageSquare } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Github, Eye, Code, TrendingUp, Users, Star } from 'lucide-react';
 
 const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const categories = [
+    { id: 'all', name: 'All', color: 'blue' },
+    { id: 'ml', name: 'Machine Learning', color: 'blue' },
+    { id: 'web', name: 'Web Development', color: 'blue' },
+    { id: 'data', name: 'Data Analysis', color: 'blue' },
+    { id: 'mobile', name: 'Mobile Apps', color: 'blue' }
+  ];
 
   const projects = [
     {
       id: 1,
-      title: 'Customer Churn Prediction Model',
-      category: 'machine-learning',
-      description: 'Built an ensemble model using Random Forest and XGBoost to predict customer churn with 94% accuracy, helping reduce customer attrition by 23%.',
-      image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'Flask'],
-      icon: Brain,
-      metrics: ['94% Accuracy', '23% Churn Reduction', '150K+ Customers'],
+      title: 'Predictive Analytics Platform',
+      description: 'Built a comprehensive ML platform for business forecasting using Python, TensorFlow, and AWS.',
+      image: '/api/placeholder/400/250',
+      category: 'ml',
+      technologies: ['Python', 'TensorFlow', 'AWS', 'React', 'PostgreSQL'],
       github: '#',
-      demo: '#'
+      live: '#',
+      metrics: {
+        accuracy: '94.2%',
+        users: '2.5K+',
+        stars: '156'
+      },
+      accentColor: 'blue'
     },
     {
       id: 2,
-      title: 'Sales Forecasting Dashboard',
-      category: 'visualization',
-      description: 'Interactive dashboard for real-time sales forecasting using time series analysis and seasonal decomposition with Prophet model.',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['Python', 'Prophet', 'Streamlit', 'Plotly', 'SQL'],
-      icon: BarChart3,
-      metrics: ['15% Better Accuracy', 'Real-time Updates', '12 Month Forecast'],
+      title: 'E-commerce Analytics Dashboard',
+      description: 'Developed a real-time analytics dashboard for e-commerce businesses with interactive visualizations.',
+      image: '/api/placeholder/400/250',
+      category: 'web',
+      technologies: ['React', 'Node.js', 'D3.js', 'MongoDB', 'Socket.io'],
       github: '#',
-      demo: '#'
+      live: '#',
+      metrics: {
+        performance: '98.5%',
+        users: '15K+',
+        conversion: '+23%'
+      },
+      accentColor: 'blue'
     },
     {
       id: 3,
-      title: 'Computer Vision Quality Control',
-      category: 'computer-vision',
-      description: 'Developed CNN-based system for automated quality control in manufacturing, reducing inspection time by 80% while improving accuracy.',
-      image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['TensorFlow', 'OpenCV', 'Python', 'Docker', 'AWS'],
-      icon: Eye,
-      metrics: ['99.2% Accuracy', '80% Time Reduction', '24/7 Monitoring'],
+      title: 'Customer Segmentation Model',
+      description: 'Implemented clustering algorithms to segment customers for targeted marketing campaigns.',
+      image: '/api/placeholder/400/250',
+      category: 'data',
+      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Plotly', 'Jupyter'],
       github: '#',
-      demo: '#'
+      live: '#',
+      metrics: {
+        clusters: '8',
+        accuracy: '89.7%',
+        roi: '+45%'
+      },
+      accentColor: 'blue'
     },
     {
       id: 4,
-      title: 'NLP Sentiment Analysis API',
-      category: 'nlp',
-      description: 'REST API for multi-language sentiment analysis using transformer models, processing 10K+ reviews daily with real-time insights.',
-      image: 'https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600',
-      technologies: ['BERT', 'FastAPI', 'Docker', 'MongoDB', 'Redis'],
-      icon: MessageSquare,
-      metrics: ['10K+ Daily Requests', '98% Accuracy', '15 Languages'],
+      title: 'Real-time Chat Application',
+      description: 'Built a scalable chat application with real-time messaging, file sharing, and user authentication.',
+      image: '/api/placeholder/400/250',
+      category: 'web',
+      technologies: ['React Native', 'Node.js', 'Socket.io', 'Firebase', 'Redux'],
       github: '#',
-      demo: '#'
+      live: '#',
+      metrics: {
+        users: '8.2K+',
+        messages: '2.1M+',
+        uptime: '99.9%'
+      },
+      accentColor: 'blue'
     }
-  ];
-
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'machine-learning', label: 'Machine Learning' },
-    { id: 'visualization', label: 'Data Visualization' },
-    { id: 'computer-vision', label: 'Computer Vision' },
-    { id: 'nlp', label: 'NLP' }
   ];
 
   const filteredProjects = activeCategory === 'all' 
     ? projects 
     : projects.filter(project => project.category === activeCategory);
 
+  const getCategoryColorClasses = (color: string) => {
+    return 'text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white';
+  };
+
+  const getAccentColorClasses = (accentColor: string) => {
+    return 'text-blue-600';
+  };
+
+  const getMetricColorClasses = (metricType: string) => {
+    return 'text-blue-600';
+  };
+
   return (
-    <section id="projects" ref={sectionRef} className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-gradient-to-br from-blue-50 via-white to-teal-50">
       <div className="container mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Featured Projects</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8 animate-expand"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Showcasing real-world data science projects that delivered measurable business impact
-          </p>
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Featured Projects
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full"></div>
         </div>
 
         {/* Category Filter */}
-        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 ${
-                activeCategory === category.id
-                  ? 'bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg animate-pulse'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md shadow-sm'
-              }`}
+              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 border-2 ${getCategoryColorClasses(category.color)} ${
+                activeCategory === category.id 
+                  ? 'bg-blue-600 text-white shadow-lg' 
+                  : 'bg-transparent'
+              } ripple`}
             >
-              {category.label}
+              {category.name}
             </button>
           ))}
         </div>
 
         {/* Projects Grid */}
-        <div className={`grid md:grid-cols-2 gap-8 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500 overflow-hidden group animate-slide-in-up" style={{ animationDelay: `${project.id * 200}ms` }}>
-              <div className="relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {filteredProjects.map((project, index) => (
+            <div 
+              key={project.id}
+              className="card-interactive group ripple"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {/* Project Image */}
+              <div className="relative overflow-hidden rounded-t-xl">
                 <img 
                   src={project.image} 
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-4 left-4 p-3 bg-white/90 backdrop-blur-sm rounded-xl group-hover:scale-110 transition-transform duration-300">
-                  <project.icon size={24} className="text-blue-600 group-hover:animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Action Buttons */}
+                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <a href={project.github} className="p-2 bg-white/90 rounded-lg hover:bg-white transition-colors ripple">
+                    <Github size={18} className="text-gray-700" />
+                  </a>
+                  <a href={project.live} className="p-2 bg-white/90 rounded-lg hover:bg-white transition-colors ripple">
+                    <ExternalLink size={18} className="text-gray-700" />
+                  </a>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{project.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{project.description}</p>
-
-                {/* Metrics */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.metrics.map((metric, index) => (
-                    <span 
-                      key={index}
-                      className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-100 hover:scale-105 transition-all duration-200 cursor-default"
-                    >
-                      {metric}
-                    </span>
-                  ))}
-                </div>
+              {/* Project Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  {project.description}
+                </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, index) => (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map((tech, techIndex) => (
                     <span 
-                      key={index}
-                      className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm hover:bg-gray-200 hover:scale-105 transition-all duration-200 cursor-default"
+                      key={techIndex}
+                      className="tag-interactive"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Links */}
-                <div className="flex space-x-4">
+                {/* Metrics */}
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  {Object.entries(project.metrics).map(([key, value]) => (
+                    <div key={key} className="text-center">
+                      <div className="flex items-center justify-center mb-1">
+                        {key === 'accuracy' && <TrendingUp size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'users' && <Users size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'stars' && <Star size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'performance' && <TrendingUp size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'conversion' && <TrendingUp size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'clusters' && <Code size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'roi' && <TrendingUp size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'messages' && <Code size={16} className={`${getMetricColorClasses(key)}`} />}
+                        {key === 'uptime' && <TrendingUp size={16} className={`${getMetricColorClasses(key)}`} />}
+                      </div>
+                      <div className={`text-sm font-semibold ${getMetricColorClasses(key)}`}>
+                        {value}
+                      </div>
+                      <div className="text-xs text-gray-500 capitalize">
+                        {key}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Project Links */}
+                <div className="flex space-x-3">
                   <a 
                     href={project.github}
-                    className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 hover:scale-105 transition-all duration-200 group"
+                    className="flex-1 flex items-center justify-center space-x-2 py-2 px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors link-interactive"
                   >
-                    <Github size={20} className="group-hover:animate-spin" />
+                    <Github size={16} />
                     <span>Code</span>
                   </a>
                   <a 
-                    href={project.demo}
-                    className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 hover:scale-105 transition-all duration-200 font-medium group"
+                    href={project.live}
+                    className="flex-1 flex items-center justify-center space-x-2 py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors link-interactive"
                   >
-                    <ExternalLink size={20} className="group-hover:animate-bounce" />
-                    <span>Live Demo</span>
-                    <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    <Eye size={16} />
+                    <span>Live</span>
                   </a>
                 </div>
               </div>
@@ -181,10 +219,10 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <button className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 flex items-center space-x-2 mx-auto group">
-            <Github size={20} className="group-hover:animate-spin" />
-            <span>View All Projects on GitHub</span>
+        {/* View All Projects Button */}
+        <div className="text-center">
+          <button className="btn-primary ripple">
+            View All Projects
           </button>
         </div>
       </div>

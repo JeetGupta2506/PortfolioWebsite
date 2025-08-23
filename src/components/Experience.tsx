@@ -71,7 +71,7 @@ const Experience = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Timeline */}
+          {/* Timeline with 3D effects */}
           <div className="relative">
             <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-blue-600 to-teal-600"></div>
             
@@ -80,31 +80,31 @@ const Experience = () => {
                 <div className={`flex flex-col md:flex-row md:items-center ${
                   index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10"></div>
+                  {/* Timeline dot with 3D effects */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 hover-lift transform-3d"></div>
                   
-                  {/* Content */}
+                  {/* Content with 3D card effects */}
                   <div className={`bg-white rounded-2xl shadow-lg p-8 ml-12 md:ml-0 ${
                     index % 2 === 0 
                       ? 'md:mr-8 md:ml-0 md:w-5/12' 
                       : 'md:ml-8 md:mr-0 md:w-5/12'
-                  } hover:shadow-xl transition-shadow duration-300`}>
+                  } hover:shadow-xl transition-all duration-300 hover-card-3d transform-3d`}>
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-gray-900">{exp.title}</h3>
                         <p className="text-lg text-blue-600 font-semibold">{exp.company}</p>
                       </div>
-                      <div className="p-2 bg-blue-50 rounded-lg">
+                      <div className="p-2 bg-blue-50 rounded-lg hover-icon-3d transform-3d">
                         <Briefcase size={20} className="text-blue-600" />
                       </div>
                     </div>
 
                     <div className="flex items-center space-x-4 mb-4 text-gray-600">
-                      <div className="flex items-center space-x-1">
+                      <div className="flex items-center space-x-1 hover-lift transform-3d">
                         <Calendar size={16} />
                         <span className="text-sm">{exp.period}</span>
                       </div>
-                      <div className="flex items-center space-x-1">
+                      <div className="flex items-center space-x-1 hover-lift transform-3d">
                         <MapPin size={16} />
                         <span className="text-sm">{exp.location}</span>
                       </div>
@@ -116,7 +116,7 @@ const Experience = () => {
                       <h4 className="font-semibold text-gray-900 mb-3">Key Achievements:</h4>
                       <ul className="space-y-2">
                         {exp.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="flex items-start space-x-2">
+                          <li key={achIndex} className="flex items-start space-x-2 hover-lift transform-3d">
                             <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
                             <span className="text-gray-600">{achievement}</span>
                           </li>
@@ -128,7 +128,7 @@ const Experience = () => {
                       {exp.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium"
+                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium hover-tilt transform-3d cursor-pointer"
                         >
                           {tech}
                         </span>
@@ -140,7 +140,7 @@ const Experience = () => {
             ))}
           </div>
 
-          {/* Certifications */}
+          {/* Certifications with 3D effects */}
           <div className="mt-20">
             <div className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Certifications</h3>
@@ -149,11 +149,11 @@ const Experience = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
-                <div key={index} className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 rounded-xl text-center hover:shadow-lg transition-shadow">
-                  <Award size={32} className="text-blue-600 mx-auto mb-4" />
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 hover-card-3d transform-3d">
+                  <Award size={32} className="text-blue-600 mx-auto mb-4 hover-icon-3d" />
                   <h4 className="font-bold text-gray-900 mb-2">{cert.name}</h4>
                   <p className="text-gray-600 text-sm mb-2">{cert.issuer}</p>
-                  <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                  <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm hover-lift transform-3d">
                     {cert.year}
                   </span>
                 </div>

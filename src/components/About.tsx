@@ -1,108 +1,124 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Brain, Database, BarChart3, Code, Award, Users } from 'lucide-react';
+import React from 'react';
+import { Code, Database, Brain, BarChart3, TrendingUp, Users, Award, Clock } from 'lucide-react';
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const skills = [
-    { icon: Brain, name: 'Machine Learning', level: 95 },
-    { icon: Database, name: 'Data Engineering', level: 90 },
-    { icon: BarChart3, name: 'Data Visualization', level: 88 },
-    { icon: Code, name: 'Python & R', level: 92 },
+    { name: 'Python', level: 95, icon: Code, color: 'blue' },
+    { name: 'Machine Learning', level: 90, icon: Brain, color: 'blue' },
+    { name: 'Data Analysis', level: 88, icon: BarChart3, color: 'blue' },
+    { name: 'SQL & Databases', level: 85, icon: Database, color: 'blue' },
+    { name: 'Deep Learning', level: 82, icon: Brain, color: 'blue' },
+    { name: 'Statistical Modeling', level: 80, icon: TrendingUp, color: 'blue' }
   ];
 
   const stats = [
-    { icon: Award, value: '50+', label: 'Projects Completed' },
-    { icon: Users, value: '15+', label: 'Clients Served' },
-    { icon: Database, value: '1M+', label: 'Records Processed' },
-    { icon: BarChart3, value: '25%', label: 'Avg. Performance Boost' },
+    { label: 'Projects Completed', value: '50+', icon: Code, color: 'blue' },
+    { label: 'Years Experience', value: '5+', icon: Clock, color: 'blue' },
+    { label: 'Happy Clients', value: '25+', icon: Users, color: 'blue' },
+    { label: 'Awards Won', value: '8', icon: Award, color: 'blue' }
   ];
 
+  const technologies = [
+    'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy',
+    'SQL', 'PostgreSQL', 'MongoDB', 'AWS', 'Docker', 'Kubernetes',
+    'React', 'Node.js', 'Flask', 'FastAPI', 'Git', 'Jupyter'
+  ];
+
+  const getSkillColorClasses = (color: string) => {
+    return 'text-blue-600';
+  };
+
+  const getStatColorClasses = (color: string) => {
+    return 'text-blue-600';
+  };
+
+  const getTechColorClasses = (color: string) => {
+    return 'text-blue-600';
+  };
+
   return (
-    <section id="about" ref={sectionRef} className="py-20 bg-white">
+    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <div className="container mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">About Me</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8 animate-expand"></div>
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            About Me
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className={`transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`}>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Passionate About Data-Driven Solutions
-            </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              With over 5 years of experience in data science and machine learning, I specialize in 
-              extracting meaningful insights from complex datasets and building predictive models 
-              that solve real-world business problems.
-            </p>
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              My expertise spans across statistical analysis, deep learning, natural language processing, 
-              and computer vision. I'm passionate about translating data into actionable strategies 
-              that drive growth and innovation.
-            </p>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Content */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-gray-900">
+                Data Scientist & ML Engineer
+              </h3>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                I'm a passionate data scientist with over 5 years of experience in transforming complex data into actionable insights. 
+                My expertise lies in building scalable machine learning solutions that drive real business value.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                I specialize in predictive modeling, natural language processing, and computer vision applications. 
+                My approach combines deep technical knowledge with strong business acumen to deliver solutions that matter.
+              </p>
+            </div>
 
             {/* Skills */}
-            <div className="space-y-6">
-              <h4 className="text-xl font-semibold text-gray-900">Core Competencies</h4>
-              {skills.map((skill, index) => (
-                <div key={index} className={`space-y-2 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-5'}`} style={{ animationDelay: `${index * 200}ms` }}>
-                  <div className="flex items-center space-x-2">
-                    <skill.icon size={20} className="text-blue-600 animate-pulse" />
-                    <span className="font-medium text-gray-900">{skill.name}</span>
-                    <span className="text-gray-600 ml-auto">{skill.level}%</span>
+            <div className="space-y-4">
+              <h4 className="text-xl font-semibold text-gray-900">Core Skills</h4>
+              <div className="space-y-4">
+                {skills.map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <skill.icon size={20} className={`${getSkillColorClasses(skill.color)}`} />
+                        <span className="font-medium text-gray-700">{skill.name}</span>
+                      </div>
+                      <span className="text-sm font-semibold text-gray-600">{skill.level}%</span>
+                    </div>
+                    <div className="progress-bar">
+                      <div 
+                        className="progress-fill"
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className={`bg-gradient-to-r from-blue-600 to-teal-600 h-2 rounded-full transition-all duration-2000 ${isVisible ? '' : 'w-0'}`}
-                      style={{ width: isVisible ? `${skill.level}%` : '0%' }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`}>
-            {/* Stats */}
+          {/* Right Column - Stats & Technologies */}
+          <div className="space-y-8">
+            {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
-                <div key={index} className={`bg-gray-50 p-6 rounded-xl text-center hover:shadow-lg hover:scale-105 transition-all duration-300 ${isVisible ? 'animate-bounce-in' : 'opacity-0 scale-95'}`} style={{ animationDelay: `${index * 150}ms` }}>
-                  <stat.icon size={32} className="text-blue-600 mx-auto mb-4 hover:animate-spin transition-transform" />
-                  <div className="text-3xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">{stat.value}</div>
-                  <div className="text-gray-600 text-sm">{stat.label}</div>
+                <div 
+                  key={stat.label}
+                  className="card-interactive text-center p-6 ripple"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex justify-center mb-3">
+                    <div className="p-3 bg-blue-100 rounded-full">
+                      <stat.icon size={24} className={`${getStatColorClasses(stat.color)}`} />
+                    </div>
+                  </div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</div>
+                  <div className="text-sm text-gray-600">{stat.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Technologies */}
-            <div className="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
-              <h4 className="text-xl font-semibold text-gray-900 mb-6 text-center">Technologies & Tools</h4>
+            <div className="space-y-4">
+              <h4 className="text-xl font-semibold text-gray-900 text-center">Technologies I Work With</h4>
               <div className="flex flex-wrap gap-3 justify-center">
-                {['Python', 'R', 'SQL', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy', 
-                  'Matplotlib', 'Seaborn', 'Jupyter', 'Docker', 'AWS', 'GCP', 'Tableau', 'Power BI'].map((tech, index) => (
+                {technologies.map((tech, index) => (
                   <span 
-                    key={index} 
-                    className={`bg-white px-4 py-2 rounded-full text-sm font-medium text-gray-700 shadow-sm hover:shadow-md hover:scale-110 hover:bg-blue-50 transition-all duration-300 cursor-pointer ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-5'}`}
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    key={tech}
+                    className="tag-interactive"
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {tech}
                   </span>
