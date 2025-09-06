@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,13 +24,17 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Brand */}
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-xl bg-emerald-500"></div>
             <button 
               onClick={() => scrollToSection('home')}
-              className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors link-underline ripple"
+              className="flex items-center text-base md:text-lg font-semibold text-gray-900 hover:text-emerald-600 transition-colors ripple"
+              aria-label="Home"
             >
-              DS
+              <span>Jeet Gupta</span>
+              <span className="mx-2 text-gray-400">·</span>
+              <span className="font-normal">Data Scientist</span>
             </button>
           </div>
 
@@ -43,10 +47,10 @@ const Header = () => {
               About
             </button>
             <button 
-              onClick={() => scrollToSection('education')}
+              onClick={() => scrollToSection('about')}
               className="nav-item ripple"
             >
-              Education
+              Skills
             </button>
             <button 
               onClick={() => scrollToSection('projects')}
@@ -68,6 +72,23 @@ const Header = () => {
             </button>
           </nav>
 
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            <a href="#" aria-label="GitHub" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
+              <Github size={20} />
+            </a>
+            <a href="#" aria-label="LinkedIn" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
+              <Linkedin size={20} />
+            </a>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors ripple"
+            >
+              <Mail size={18} />
+              Contact
+            </button>
+          </div>
+
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
@@ -88,10 +109,10 @@ const Header = () => {
                 About
               </button>
               <button 
-                onClick={() => scrollToSection('education')}
+                onClick={() => scrollToSection('about')}
                 className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
               >
-                Education
+                Skills
               </button>
               <button 
                 onClick={() => scrollToSection('projects')}

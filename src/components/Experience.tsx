@@ -1,7 +1,34 @@
+import { useState } from 'react';
 import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
 
 const Experience = () => {
+  const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const experiences = [
+    {
+      title: 'Technical Lead',
+      company: 'Nexus Cell SVNIT',
+      location: 'Surat, Gujarat, India',
+      period: 'July 2025 – Present',
+      description: 'Leading technical initiatives for Nexus Cell SVNIT, collaborating across campus cells for events and hackathons while mentoring juniors in full‑stack and AI/ML.',
+      achievements: [
+        'Collaborated with campus cells to plan and run events and hackathons',
+        'Mentored junior members in full‑stack development and AI/ML',
+        'Worked with senior developers to deliver new features and fix bugs on Nexus’s official website'
+      ],
+    },
+    {
+      title: 'AI ML Intern',
+      company: 'Accenture',
+      location: 'Remote',
+      period: 'May 2025 – July 2025',
+      description: 'Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.',
+      achievements: [
+        'Coordinated with the team to develop chatbots and agents for Bank of Baroda\'s web application',
+        'Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n',
+        'Integrated generative AI workflows to streamline development of conversational agents'
+      ],
+      technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI']
+    },
     {
       title: 'Senior Data Scientist',
       company: 'TechCorp Solutions',
@@ -45,19 +72,18 @@ const Experience = () => {
 
   const certifications = [
     {
-      name: 'AWS Certified Machine Learning - Specialty',
-      issuer: 'Amazon Web Services',
-      year: '2023'
+      name: 'Fundamentals of AI Agents Using RAG and LangChain',
+      issuer: 'IBM',
+      year: '2024',
+      url: 'https://coursera.org/share/523440f624ef9a5be5b217c877232ad0',
+      image: '/certificates/rag-langchain.jpg'
     },
     {
-      name: 'Professional Data Scientist',
-      issuer: 'DataCamp',
-      year: '2022'
-    },
-    {
-      name: 'TensorFlow Developer Certificate',
-      issuer: 'Google',
-      year: '2021'
+      name: 'Machine Learning with Python',
+      issuer: 'IBM',
+      year: '2024',
+      url: 'https://coursera.org/share/af8c43fc51a2d006d9ae7d0f65550e27',
+      image: '/certificates/ml-python.jpg'
     }
   ];
 
@@ -123,16 +149,18 @@ const Experience = () => {
                       </ul>
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium hover-tilt transform-3d cursor-pointer"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    {exp.technologies && (
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech, techIndex) => (
+                          <span 
+                            key={techIndex}
+                            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium hover-tilt transform-3d cursor-pointer"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -149,18 +177,47 @@ const Experience = () => {
             <div className="grid md:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
                 <div key={index} className="bg-gradient-to-br from-blue-50 to-teal-50 p-6 rounded-xl text-center hover:shadow-lg transition-all duration-300 hover-card-3d transform-3d">
-                  <Award size={32} className="text-blue-600 mx-auto mb-4 hover-icon-3d" />
+                  {cert.image ? (
+                    <img 
+                      src={cert.image} 
+                      alt={`${cert.name} certificate`} 
+                      className="w-full h-40 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in" 
+                      onClick={() => setPreview({ src: cert.image as string, alt: `${cert.name} certificate` })}
+                      role="button"
+                      tabIndex={0}
+                    />
+                  ) : (
+                    <Award size={32} className="text-blue-600 mx-auto mb-4 hover-icon-3d" />
+                  )}
                   <h4 className="font-bold text-gray-900 mb-2">{cert.name}</h4>
                   <p className="text-gray-600 text-sm mb-2">{cert.issuer}</p>
-                  <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm hover-lift transform-3d">
-                    {cert.year}
-                  </span>
+                  <div className="flex items-center justify-center gap-2 mt-1">
+                    <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm">{cert.year}</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+    {preview && (
+      <div 
+        className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 cursor-zoom-out"
+        onClick={() => setPreview(null)}
+      >
+        <div className="max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+          <img src={preview.src} alt={preview.alt} className="w-full h-auto rounded-lg shadow-2xl" />
+          <div className="mt-3 text-center">
+            <button 
+              onClick={() => setPreview(null)}
+              className="inline-flex items-center px-4 py-2 rounded-md bg-white text-gray-800 font-medium hover:bg-gray-100"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
     </section>
   );
 };
