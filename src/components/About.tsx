@@ -91,25 +91,6 @@ const About = () => {
 
           {/* Right Column - Stats & Technologies */}
           <div className="space-y-8">
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div 
-                  key={stat.label}
-                  className="card-interactive text-center p-6 ripple"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex justify-center mb-3">
-                    <div className="p-3 bg-blue-100 rounded-full">
-                      <stat.icon size={24} className={`${getStatColorClasses(stat.color)}`} />
-                    </div>
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900 mb-2">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-
             {/* Technologies */}
             <div className="space-y-4">
               <h4 className="text-xl font-semibold text-gray-900 text-center">Technologies I Work With</h4>
