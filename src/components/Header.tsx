@@ -43,6 +43,12 @@ const Header = () => {
               About
             </button>
             <button 
+              onClick={() => scrollToSection('education')}
+              className="nav-item ripple"
+            >
+              Education
+            </button>
+            <button 
               onClick={() => scrollToSection('projects')}
               className="nav-item ripple"
             >
@@ -80,6 +86,12 @@ const Header = () => {
                 className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
               >
                 About
+              </button>
+              <button 
+                onClick={() => scrollToSection('education')}
+                className="w-full text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors ripple icon-interactive link-interactive"
+              >
+                Education
               </button>
               <button 
                 onClick={() => scrollToSection('projects')}
