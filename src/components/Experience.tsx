@@ -3,72 +3,33 @@ import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
 
 const Experience = () => {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
-  const experiences = [
-    {
-      title: 'Technical Lead',
-      company: 'Nexus Cell SVNIT',
-      location: 'Surat, Gujarat, India',
-      period: 'July 2025 – Present',
-      description: 'Leading technical initiatives for Nexus Cell SVNIT, collaborating across campus cells for events and hackathons while mentoring juniors in full‑stack and AI/ML.',
-      achievements: [
-        'Collaborated with campus cells to plan and run events and hackathons',
-        'Mentored junior members in full‑stack development and AI/ML',
-        'Worked with senior developers to deliver new features and fix bugs on Nexus’s official website'
-      ],
-    },
-    {
-      title: 'AI ML Intern',
-      company: 'Accenture',
-      location: 'Remote',
-      period: 'May 2025 – July 2025',
-      description: 'Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.',
-      achievements: [
-        'Coordinated with the team to develop chatbots and agents for Bank of Baroda\'s web application',
-        'Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n',
-        'Integrated generative AI workflows to streamline development of conversational agents'
-      ],
-      technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI']
-    },
-    {
-      title: 'Senior Data Scientist',
-      company: 'TechCorp Solutions',
-      location: 'San Francisco, CA',
-      period: '2022 - Present',
-      description: 'Leading a team of 5 data scientists in developing ML solutions for e-commerce optimization. Built recommendation systems serving 2M+ users daily.',
-      achievements: [
-        'Increased conversion rates by 28% through personalization algorithms',
-        'Led migration to cloud-based ML pipeline, reducing costs by 40%',
-        'Mentored junior team members and established best practices'
-      ],
-      technologies: ['Python', 'TensorFlow', 'AWS', 'Kubernetes', 'MLOps']
-    },
-    {
-      title: 'Data Scientist',
-      company: 'StartupX',
-      location: 'Remote',
-      period: '2020 - 2022',
-      description: 'Developed end-to-end ML solutions for fintech applications, focusing on fraud detection and risk assessment models.',
-      achievements: [
-        'Built fraud detection system with 99.5% accuracy, saving $2M annually',
-        'Implemented real-time model serving infrastructure',
-        'Created automated model monitoring and retraining pipelines'
-      ],
-      technologies: ['Python', 'Scikit-learn', 'Docker', 'PostgreSQL', 'FastAPI']
-    },
-    {
-      title: 'Junior Data Analyst',
-      company: 'Analytics Pro',
-      location: 'New York, NY',
-      period: '2019 - 2020',
-      description: 'Performed statistical analysis and created visualizations for clients across various industries including healthcare and retail.',
-      achievements: [
-        'Delivered 20+ analytical reports leading to strategic decisions',
-        'Automated reporting processes, reducing manual work by 60%',
-        'Collaborated with cross-functional teams on data-driven initiatives'
-      ],
-      technologies: ['R', 'SQL', 'Tableau', 'Excel', 'SPSS']
-    }
-  ];
+    const experiences = [
+      {
+        title: 'Technical Lead',
+        company: 'Nexus Cell SVNIT',
+        location: 'Surat, Gujarat, India',
+        period: 'July 2025 – Present',
+        description: 'Leading technical initiatives for Nexus Cell SVNIT, collaborating across campus cells for events and hackathons while mentoring juniors in full‑stack and AI/ML.',
+        achievements: [
+          'Collaborated with campus cells to plan and run events and hackathons',
+          'Mentored junior members in full‑stack development and AI/ML',
+          'Worked with senior developers to deliver new features and fix bugs on Nexus’s official website'
+        ],
+      },
+      {
+        title: 'AI ML Intern',
+        company: 'Accenture',
+        location: 'Remote',
+        period: 'May 2025 – July 2025',
+        description: 'Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.',
+        achievements: [
+          'Coordinated with the team to develop chatbots and agents for Bank of Baroda\'s web application',
+          'Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n',
+          'Integrated generative AI workflows to streamline development of conversational agents'
+        ],
+        technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI']
+      }
+    ];
 
   const certifications = [
     {
@@ -86,6 +47,9 @@ const Experience = () => {
       image: '/certificates/ml-python.jpg'
     }
   ];
+
+  // LinkedIn link for use in social/profile links
+  const linkedInUrl = 'https://www.linkedin.com/in/jeet-gupta-559099295';
 
   return (
     <section id="experience" className="py-20 bg-white">

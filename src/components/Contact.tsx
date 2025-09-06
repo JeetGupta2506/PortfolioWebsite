@@ -6,21 +6,21 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'hello@example.com',
-      link: 'mailto:hello@example.com',
+      value: 'guptajeet2506@gmail.com',
+      link: 'mailto:guptajeet2506@gmail.com',
       accentColor: 'blue'
     },
     {
       icon: Phone,
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      value: '+91 7984060375',
+      link: 'tel:+917984060375',
       accentColor: 'blue'
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Ahmedabad, India',
       link: '#',
       accentColor: 'blue'
     }
@@ -30,19 +30,13 @@ const Contact = () => {
     {
       icon: Github,
       name: 'GitHub',
-      url: '#',
+      url: 'https://github.com/JeetGupta2506',
       accentColor: 'blue'
     },
     {
       icon: Linkedin,
       name: 'LinkedIn',
-      url: '#',
-      accentColor: 'blue'
-    },
-    {
-      icon: Twitter,
-      name: 'Twitter',
-      url: '#',
+      url: 'https://www.linkedin.com/in/jeet-gupta-559099295',
       accentColor: 'blue'
     }
   ];
@@ -70,11 +64,12 @@ const Contact = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
           <div className="card-interactive p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h3>
             <form className="space-y-6">
+              {/* ...existing code... */}
               <div className="form-group">
                 <label htmlFor="name" className="form-label">Name</label>
                 <input
@@ -86,7 +81,6 @@ const Contact = () => {
                   required
                 />
               </div>
-              
               <div className="form-group">
                 <label htmlFor="email" className="form-label">Email</label>
                 <input
@@ -94,11 +88,10 @@ const Contact = () => {
                   id="email"
                   name="email"
                   className="input-field"
-                  placeholder="your.email@example.com"
+                  placeholder="guptajeet2506@gmail.com"
                   required
                 />
               </div>
-              
               <div className="form-group">
                 <label htmlFor="subject" className="form-label">Subject</label>
                 <input
@@ -110,7 +103,6 @@ const Contact = () => {
                   required
                 />
               </div>
-              
               <div className="form-group">
                 <label htmlFor="message" className="form-label">Message</label>
                 <textarea
@@ -122,7 +114,6 @@ const Contact = () => {
                   required
                 ></textarea>
               </div>
-              
               <button type="submit" className="btn-primary w-full flex items-center justify-center space-x-2 ripple">
                 <Send size={20} />
                 <span>Send Message</span>
@@ -130,8 +121,8 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
+          {/* Contact Information & Social Links stacked vertically */}
+          <div className="flex flex-col space-y-8 justify-center">
             {/* Contact Details */}
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-900">Contact Information</h3>
@@ -161,10 +152,10 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="space-y-4">
+            {/* Social Links centered below contact info */}
+            <div className="space-y-4 flex flex-col items-center">
               <h4 className="text-xl font-semibold text-gray-900">Follow Me</h4>
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 justify-center">
                 {socialLinks.map((social, index) => (
                   <a 
                     key={social.name}
@@ -176,17 +167,6 @@ const Contact = () => {
                   </a>
                 ))}
               </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="card-interactive p-6 text-center ripple">
-              <h4 className="text-lg font-semibold text-gray-900 mb-3">Ready to Start a Project?</h4>
-              <p className="text-gray-600 mb-4">
-                Let's discuss how I can help bring your ideas to life with data-driven solutions.
-              </p>
-              <button className="btn-secondary ripple">
-                Schedule a Call
-              </button>
             </div>
           </div>
         </div>

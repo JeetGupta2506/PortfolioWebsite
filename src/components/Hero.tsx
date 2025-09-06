@@ -34,10 +34,10 @@ const Hero = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-6 justify-start items-center mb-12 animate-fade-in-up animation-delay-500">
-                <button className="btn-primary flex items-center space-x-2 group ripple">
+                <a href="/resume.pdf" download className="btn-primary flex items-center space-x-2 group ripple">
                   <Download size={20} className="group-hover:animate-bounce transition-transform duration-300" />
                   <span className="group-hover:animate-pulse">Download Resume</span>
-                </button>
+                </a>
                 <button 
                   onClick={scrollToAbout}
                   className="btn-secondary ripple"
@@ -47,13 +47,13 @@ const Hero = () => {
               </div>
 
               <div className="flex justify-start space-x-8 animate-fade-in-up animation-delay-700">
-                <a href="#" className="social-link group ripple">
+                <a href="https://github.com/JeetGupta2506" className="social-link group ripple" target="_blank" rel="noopener noreferrer">
                   <Github size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive" />
                 </a>
-                <a href="#" className="social-link group ripple animation-delay-100">
+                <a href="https://www.linkedin.com/in/jeet-gupta-559099295" className="social-link group ripple animation-delay-100" target="_blank" rel="noopener noreferrer">
                   <Linkedin size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive" />
                 </a>
-                <a href="#" className="social-link group ripple animation-delay-200">
+                <a href="mailto:guptajeet2506@gmail.com" className="social-link group ripple animation-delay-200">
                   <Mail size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive" />
                 </a>
               </div>

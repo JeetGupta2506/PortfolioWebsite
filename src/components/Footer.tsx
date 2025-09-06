@@ -16,6 +16,8 @@ const Footer = () => {
               Made with{' '}
               <Heart size={20} className="inline-block text-red-500 hover:text-red-400 transition-colors hover-icon-3d animate-pulse" />
               {' '}by Data Scientist
+              {' | '}
+              <a href="https://www.linkedin.com/in/jeet-gupta-559099295" target="_blank" rel="noopener noreferrer" className="underline text-blue-400 hover:text-blue-600 ml-2">LinkedIn</a>
             </p>
           </div>
 

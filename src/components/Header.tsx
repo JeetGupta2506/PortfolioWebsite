@@ -74,10 +74,10 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <a href="#" aria-label="GitHub" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
+            <a href="https://github.com/JeetGupta2506" aria-label="GitHub" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
               <Github size={20} />
             </a>
-            <a href="#" aria-label="LinkedIn" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
+            <a href="https://www.linkedin.com/in/jeet-gupta-559099295" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors ripple">
               <Linkedin size={20} />
             </a>
             <button 
