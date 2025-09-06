@@ -163,21 +163,6 @@ const Education = () => {
 
                 {/* Right Column - Skills & Quick Stats */}
                 <div className="space-y-6">
-                  <div className="card-interactive p-6 bg-gradient-to-br from-blue-50 to-teal-50">
-                    <h4 className="font-semibold text-gray-900 mb-4 text-center">Technical Skills</h4>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {edu.skills.map((skill, skillIndex) => (
-                        <span 
-                          key={skillIndex}
-                          className="tag-interactive"
-                          style={{ animationDelay: `${skillIndex * 50}ms` }}
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
                   <div className="text-center space-y-4">
                     <div className="card-interactive p-4 hover-tilt transform-3d">
                       <div className="text-2xl font-bold text-blue-600">3rd</div>
