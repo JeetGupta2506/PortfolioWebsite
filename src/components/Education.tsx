@@ -98,9 +98,9 @@ const Education = () => {
           {/* Main Education Card */}
           {education.map((edu, index) => (
             <div key={index} className="card-interactive p-8 mb-12 hover-card-3d transform-3d">
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="space-y-6">
                 {/* Left Column - Main Info */}
-                <div className="lg:col-span-2 space-y-6">
+                <div className="space-y-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
@@ -162,18 +162,6 @@ const Education = () => {
                 </div>
 
                 {/* Right Column - Skills & Quick Stats */}
-                <div className="space-y-6">
-                  <div className="text-center space-y-4">
-                    <div className="card-interactive p-4 hover-tilt transform-3d">
-                      <div className="text-2xl font-bold text-blue-600">3rd</div>
-                      <div className="text-sm text-gray-600">Current Year</div>
-                    </div>
-                    <div className="card-interactive p-4 hover-tilt transform-3d">
-                      <div className="text-2xl font-bold text-blue-600">{edu.gpa}</div>
-                      <div className="text-sm text-gray-600">CGPA</div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* Expandable Sections */}
