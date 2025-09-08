@@ -54,94 +54,100 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-20 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-float-3d transform-3d"></div>
+        <div className="absolute bottom-1/3 left-20 w-24 h-24 bg-teal-100 rounded-full opacity-30 animate-float-delayed transform-3d"></div>
+      </div>
+      
+      <div className="container-responsive relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
+          <h2 className="text-responsive-lg font-bold text-gray-900 mb-6 will-change-transform">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full animate-expand animation-delay-300"></div>
         </div>
 
-        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid-responsive-2col">
           {/* Contact Form */}
-          <div className="card-interactive p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send a Message</h3>
-            <form className="space-y-6">
+          <div className="card-interactive p-6 sm:p-8 animate-slide-in-left animation-delay-400 hover-card-3d transform-3d">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 will-change-transform">Send a Message</h3>
+            <form className="space-y-4 sm:space-y-6">
               {/* ...existing code... */}
               <div className="form-group">
-                <label htmlFor="name" className="form-label">Name</label>
+                <label htmlFor="name" className="form-label text-sm sm:text-base">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                   placeholder="Your name"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email" className="form-label">Email</label>
+                <label htmlFor="email" className="form-label text-sm sm:text-base">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                   placeholder="guptajeet2506@gmail.com"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="subject" className="form-label">Subject</label>
+                <label htmlFor="subject" className="form-label text-sm sm:text-base">Subject</label>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                   placeholder="What's this about?"
                   required
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="message" className="form-label">Message</label>
+                <label htmlFor="message" className="form-label text-sm sm:text-base">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   rows={5}
-                  className="input-field resize-none"
+                  className="input-field resize-none text-sm sm:text-base"
                   placeholder="Tell me more about your project..."
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btn-primary w-full flex items-center justify-center space-x-2 ripple">
-                <Send size={20} />
+              <button type="submit" className="btn-primary w-full flex items-center justify-center space-x-2 ripple hover-button-3d transform-3d">
+                <Send size={18} className="icon-interactive" />
                 <span>Send Message</span>
               </button>
             </form>
           </div>
 
           {/* Contact Information & Social Links stacked vertically */}
-          <div className="flex flex-col space-y-8 justify-center">
+          <div className="flex flex-col space-y-6 sm:space-y-8 justify-center animate-slide-in-right animation-delay-500">
             {/* Contact Details */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-gray-900">Contact Information</h3>
-              <div className="space-y-4">
+            <div className="space-y-4 sm:space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 will-change-transform">Contact Information</h3>
+              <div className="space-y-3 sm:space-y-4">
                 {contactInfo.map((info, index) => (
                   <div 
                     key={info.title}
-                    className="card-interactive p-6 ripple"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="card-interactive p-4 sm:p-6 ripple hover-card-3d transform-3d animate-scale-in will-change-transform"
+                    style={{ animationDelay: `${600 + index * 100}ms` }}
                   >
                     <div className="flex items-start space-x-4">
-                      <div className="p-3 bg-blue-100 rounded-full">
-                        <info.icon size={24} className={`${getIconColorClasses(info.accentColor)}`} />
+                      <div className="p-2 sm:p-3 bg-blue-100 rounded-full hover-icon-3d transform-3d">
+                        <info.icon size={20} className={`${getIconColorClasses(info.accentColor)} icon-interactive`} />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{info.title}</h4>
                         <a 
                           href={info.link}
-                          className={`${getAccentColorClasses(info.accentColor)} hover:underline transition-colors ripple`}
+                          className={`${getAccentColorClasses(info.accentColor)} hover:underline transition-all duration-300 ripple text-sm sm:text-base hover-lift transform-3d`}
                         >
                           {info.value}
                         </a>
@@ -153,17 +159,19 @@ const Contact = () => {
             </div>
 
             {/* Social Links centered below contact info */}
-            <div className="space-y-4 flex flex-col items-center">
-              <h4 className="text-xl font-semibold text-gray-900">Follow Me</h4>
-              <div className="flex space-x-4 justify-center">
+            <div className="space-y-4 flex flex-col items-center animate-fade-in-up animation-delay-900">
+              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 will-change-transform">Follow Me</h4>
+              <div className="flex space-x-3 sm:space-x-4 justify-center">
                 {socialLinks.map((social, index) => (
                   <a 
                     key={social.name}
                     href={social.url}
-                    className="social-link ripple"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="social-link ripple hover-lift transform-3d animate-bounce-in will-change-transform"
+                    style={{ animationDelay: `${1000 + index * 100}ms` }}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <social.icon size={24} className={`${getSocialColorClasses(social.accentColor)}`} />
+                    <social.icon size={20} className={`${getSocialColorClasses(social.accentColor)} icon-interactive`} />
                   </a>
                 ))}
               </div>
