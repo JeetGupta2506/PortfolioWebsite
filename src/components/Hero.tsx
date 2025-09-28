@@ -20,10 +20,10 @@ const Hero = () => {
     const handleTyping = () => {
       if (isDeleting) {
         setDisplayText(currentRole.substring(0, displayText.length - 1));
-        setTypeSpeed(75);
+        setTypeSpeed(50);
       } else {
         setDisplayText(currentRole.substring(0, displayText.length + 1));
-        setTypeSpeed(150);
+        setTypeSpeed(100);
       }
     };
 
@@ -33,7 +33,7 @@ const Hero = () => {
 
     // Check if word is complete
     if (!isDeleting && displayText === currentRole) {
-      setTimeout(() => setIsDeleting(true), 2000);
+      setTimeout(() => setIsDeleting(true), 1000);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
       setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
