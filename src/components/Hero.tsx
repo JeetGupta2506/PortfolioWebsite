@@ -1,6 +1,47 @@
 import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
+  const roles = [
+    'Data Scientist',
+    'Artificial Intelligence Engineer',
+    'ML Engineer', 
+    'GenAI Engineer'
+  ];
+  
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typeSpeed, setTypeSpeed] = useState(150);
+
+  useEffect(() => {
+    const currentRole = roles[currentRoleIndex];
+    
+    const handleTyping = () => {
+      if (isDeleting) {
+        setDisplayText(currentRole.substring(0, displayText.length - 1));
+        setTypeSpeed(75);
+      } else {
+        setDisplayText(currentRole.substring(0, displayText.length + 1));
+        setTypeSpeed(150);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      handleTyping();
+    }, typeSpeed);
+
+    // Check if word is complete
+    if (!isDeleting && displayText === currentRole) {
+      setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setCurrentRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentRoleIndex, typeSpeed, roles]);
+
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -25,9 +66,9 @@ const Hero = () => {
             {/* Left: Introduction */}
             <div className="order-2 lg:order-1 text-center lg:text-left space-responsive-y">
               <h1 className="text-responsive-xl font-bold text-gray-900 leading-tight animate-slide-in-left will-change-transform">
-                Data Scientist &
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent block animate-slide-in-right animation-delay-200">
-                  ML Engineer
+                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent block animate-slide-in-right animation-delay-200 min-h-[1.2em]">
+                  {displayText}
+                  <span className="animate-pulse text-blue-600">|</span>
                 </span>
               </h1>
               <p className="text-responsive-md text-gray-600 max-w-3xl leading-relaxed animate-fade-in-up animation-delay-400 mx-auto lg:mx-0">
