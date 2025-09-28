@@ -66,9 +66,9 @@ const Hero = () => {
             {/* Left: Introduction */}
             <div className="order-2 lg:order-1 text-center lg:text-left space-responsive-y">
               <h1 className="text-responsive-xl font-bold text-gray-900 leading-tight animate-slide-in-left will-change-transform">
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent block animate-slide-in-right animation-delay-200 min-h-[1.2em]">
+                <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent block animate-slide-in-right animation-delay-200 min-h-[1.2em]">
                   {displayText}
-                  <span className="animate-pulse text-blue-600">|</span>
+                  <span className="animate-pulse text-purple-600">|</span>
                 </span>
               </h1>
               <p className="text-responsive-md text-gray-600 max-w-3xl leading-relaxed animate-fade-in-up animation-delay-400 mx-auto lg:mx-0">
