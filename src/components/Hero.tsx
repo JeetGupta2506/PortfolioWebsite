@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const Hero = () => {
   const roles = [
     'Data Scientist',
-    'Artificial Intelligence Engineer',
+    'AI Engineer',
     'ML Engineer', 
     'GenAI Engineer'
   ];
