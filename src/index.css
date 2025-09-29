@@ -16,7 +16,6 @@ body {
   /* Button States & Interactions */
   .btn-primary {
     @apply bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-500 ease-out;
-    transition-duration: 500ms;
     @apply hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-2 hover:scale-110;
     @apply active:scale-95 active:shadow-md;
     @apply focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-offset-2;
@@ -26,7 +25,6 @@ body {
 
   .btn-secondary {
     @apply border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold transition-all duration-500 ease-out;
-    transition-duration: 500ms;
     @apply hover:bg-blue-600 hover:text-white hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-2 hover:scale-110;
     @apply active:scale-95 active:shadow-md;
     @apply focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-offset-2;
@@ -35,8 +33,7 @@ body {
   }
 
   .btn-ghost {
-    @apply text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-400 ease-out;
-    transition-duration: 400ms;
+    @apply text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-out;
     @apply hover:bg-gray-100 hover:text-gray-900 hover:shadow-lg hover:-translate-y-1 hover:scale-105;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-gray-500/30 focus:ring-offset-1;
@@ -46,7 +43,6 @@ body {
   /* Card Interactions */
   .card-interactive {
     @apply bg-white rounded-xl shadow-md transition-all duration-500 ease-out;
-    transition-duration: 500ms;
     @apply hover:shadow-2xl hover:shadow-gray-500/25 hover:-translate-y-3 hover:scale-[1.03];
     @apply active:scale-[0.98] active:shadow-lg;
     @apply focus-within:ring-4 focus-within:ring-blue-500/20 focus-within:ring-offset-2;
@@ -55,7 +51,6 @@ body {
 
   .card-hover-lift {
     @apply transition-all duration-500 ease-out;
-    transition-duration: 500ms;
     @apply hover:shadow-2xl hover:shadow-gray-500/30 hover:-translate-y-4 hover:scale-[1.05];
     @apply active:scale-[0.97] active:shadow-xl;
     @apply transform-gpu will-change-transform;
@@ -63,8 +58,7 @@ body {
 
   /* Input Field Interactions */
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-gray-300 transition-all ease-out;
-    transition-duration: 400ms;
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-300 ease-out;
     @apply focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:scale-[1.03] focus:-translate-y-1;
     @apply hover:border-gray-400 hover:shadow-md hover:-translate-y-0.5;
     @apply placeholder:text-gray-400 placeholder:transition-colors placeholder:duration-300;
@@ -78,8 +72,7 @@ body {
 
   /* Link Interactions */
   .link-interactive {
-    @apply text-gray-600 transition-all ease-out;
-    transition-duration: 400ms;
+  @apply text-gray-600 transition-all duration-300 ease-out;
     @apply hover:text-blue-600 hover:scale-110 hover:translate-x-2;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
@@ -87,14 +80,12 @@ body {
   }
 
   .link-underline {
-    @apply relative text-gray-700 transition-all ease-out;
-    transition-duration: 400ms;
+    @apply relative text-gray-700 transition-all duration-300 ease-out;
     @apply hover:text-blue-600;
   }
 
   .link-underline::after {
-    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transition-all ease-out;
-    transition-duration: 400ms;
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transition-all duration-300 ease-out;
   }
 
   .link-underline:hover::after {
@@ -103,8 +94,7 @@ body {
 
   /* Icon Interactions */
   .icon-interactive {
-    @apply transition-all ease-out;
-    transition-duration: 400ms;
+    @apply transition-all duration-300 ease-out;
     @apply hover:scale-125 hover:rotate-12 hover:text-blue-600 hover:-translate-y-1;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
@@ -112,16 +102,14 @@ body {
   }
 
   .icon-bounce {
-    @apply transition-all ease-out;
-    transition-duration: 400ms;
+    @apply transition-all duration-300 ease-out;
     @apply hover:scale-125 hover:animate-bounce hover:-translate-y-2;
     @apply active:scale-95;
     @apply transform-gpu will-change-transform;
   }
 
   .icon-rotate {
-    @apply transition-all ease-out;
-    transition-duration: 500ms;
+    @apply transition-all duration-500 ease-out;
     @apply hover:scale-125 hover:rotate-180 hover:-translate-y-1;
     @apply active:scale-95;
     @apply transform-gpu will-change-transform;
@@ -129,8 +117,7 @@ body {
 
   /* Navigation Interactions */
   .nav-item {
-    @apply relative text-gray-700 font-medium transition-all ease-out;
-    transition-duration: 400ms;
+    @apply relative text-gray-700 font-medium transition-all duration-300 ease-out;
     @apply hover:text-blue-600 hover:scale-110 hover:-translate-y-1;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
@@ -138,8 +125,7 @@ body {
   }
 
   .nav-item::after {
-    @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transition-all ease-out transform -translate-x-1/2;
-    transition-duration: 400ms;
+    @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transition-all duration-300 ease-out transform -translate-x-1/2;
   }
 
   .nav-item:hover::after {
@@ -148,8 +134,7 @@ body {
 
   /* Tag Interactions */
   .tag-interactive {
-    @apply bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium transition-all ease-out;
-    transition-duration: 400ms;
+    @apply bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium transition-all duration-300 ease-out;
     @apply hover:bg-blue-100 hover:text-blue-700 hover:scale-110 hover:shadow-lg hover:-translate-y-1;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
@@ -157,8 +142,7 @@ body {
   }
 
   .tag-accent {
-    @apply bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium transition-all ease-out;
-    transition-duration: 400ms;
+    @apply bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium transition-all duration-300 ease-out;
     @apply hover:bg-blue-100 hover:scale-110 hover:shadow-lg hover:-translate-y-1;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
@@ -167,23 +151,20 @@ body {
 
   /* Progress Bar Interactions */
   .progress-bar {
-    @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden transition-all ease-out;
-    transition-duration: 500ms;
+    @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden transition-all duration-500 ease-out;
     @apply hover:h-3 hover:shadow-lg hover:scale-105;
     @apply transform-gpu will-change-transform;
   }
 
   .progress-fill {
-    @apply bg-gradient-to-r from-blue-600 to-teal-600 h-full rounded-full transition-all ease-out;
-    transition-duration: 1500ms;
+    @apply bg-gradient-to-r from-blue-600 to-teal-600 h-full rounded-full transition-all duration-1000 ease-out;
     @apply hover:from-blue-500 hover:to-teal-500 hover:shadow-lg;
     @apply animate-pulse-slow;
   }
 
   /* Timeline Interactions */
   .timeline-dot {
-    @apply absolute w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 transition-all ease-out;
-    transition-duration: 500ms;
+    @apply absolute w-4 h-4 bg-white border-4 border-blue-600 rounded-full z-10 transition-all duration-500 ease-out;
     @apply hover:scale-150 hover:border-blue-700 hover:shadow-xl hover:-translate-y-1;
     @apply active:scale-110;
     @apply focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-offset-2;
@@ -191,15 +172,13 @@ body {
   }
 
   .timeline-line {
-    @apply absolute w-0.5 h-full bg-gradient-to-b from-blue-600 to-teal-600 transition-all ease-out;
-    transition-duration: 700ms;
+    @apply absolute w-0.5 h-full bg-gradient-to-b from-blue-600 to-teal-600 transition-all duration-700 ease-out;
     @apply hover:from-blue-700 hover:to-teal-700 hover:w-1 hover:shadow-lg;
   }
 
   /* Social Media Interactions */
   .social-link {
-    @apply p-3 bg-white rounded-full shadow-lg transition-all ease-out;
-    transition-duration: 500ms;
+    @apply p-3 bg-white rounded-full shadow-lg transition-all duration-500 ease-out;
     @apply hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-3 hover:scale-125 hover:rotate-12;
     @apply active:scale-95 active:shadow-lg;
     @apply focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-offset-2;
@@ -208,15 +187,13 @@ body {
 
   /* Form Interactions */
   .form-group {
-    @apply transition-all ease-out;
-    transition-duration: 500ms;
+    @apply transition-all duration-500 ease-out;
     @apply focus-within:scale-[1.03] focus-within:translate-y-[-4px];
     @apply transform-gpu will-change-transform;
   }
 
   .form-label {
-    @apply block text-sm font-medium text-gray-700 mb-2 transition-all ease-out;
-    transition-duration: 400ms;
+    @apply block text-sm font-medium text-gray-700 mb-2 transition-all duration-300 ease-out;
     @apply focus-within:text-blue-600 focus-within:font-semibold focus-within:scale-105;
     @apply transform-gpu will-change-transform;
   }
@@ -237,8 +214,7 @@ body {
   }
 
   .ripple::after {
-    @apply content-[''] absolute top-1/2 left-1/2 w-0 h-0 bg-white/40 rounded-full transition-all ease-out;
-    transition-duration: 600ms;
+    @apply content-[''] absolute top-1/2 left-1/2 w-0 h-0 bg-white/40 rounded-full transition-all duration-500 ease-out;
     @apply transform -translate-x-1/2 -translate-y-1/2;
   }
 
@@ -305,6 +281,46 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #2563eb;
+  }
+}
+
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutFade {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(30px);
   }
 }
 
@@ -586,15 +602,6 @@ body {
   }
 }
 
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
 /* Animation Classes */
 .animate-fade-in {
   animation: fadeIn 0.8s ease-out forwards;
@@ -695,6 +702,22 @@ body {
   animation: iconFloat 6s ease-in-out infinite;
 }
 
+.animate-typewriter {
+  animation: typewriter 2s steps(20) 1s both;
+}
+
+.animate-blink-cursor {
+  animation: blinkCursor 1s infinite;
+}
+
+.animate-slide-in-fade {
+  animation: slideInFade 0.5s ease-out forwards;
+}
+
+.animate-slide-out-fade {
+  animation: slideOutFade 0.5s ease-out forwards;
+}
+
 /* 3D Transform Classes */
 .transform-3d {
   transform-style: preserve-3d;
@@ -703,7 +726,6 @@ body {
 
 .hover-lift {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -714,7 +736,6 @@ body {
 
 .hover-tilt {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -724,7 +745,6 @@ body {
 
 .hover-rotate-3d {
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -734,7 +754,6 @@ body {
 
 .hover-scale-3d {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -744,7 +763,6 @@ body {
 
 .hover-button-3d {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -758,7 +776,6 @@ body {
 
 .hover-card-3d {
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
@@ -769,7 +786,6 @@ body {
 
 .hover-icon-3d {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-gpu: true;
   will-change: transform;
 }
 
