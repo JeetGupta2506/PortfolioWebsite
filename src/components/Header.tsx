@@ -40,31 +40,31 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            <button 
+            <button
               onClick={() => scrollToSection('about')}
               className="nav-item ripple hover-lift transform-3d"
             >
               About
             </button>
-            <button 
-              onClick={() => scrollToSection('about')}
+            <button
+              onClick={() => scrollToSection('skills')}
               className="nav-item ripple hover-lift transform-3d"
             >
               Skills
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('projects')}
               className="nav-item ripple hover-lift transform-3d"
             >
               Projects
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('experience')}
               className="nav-item ripple hover-lift transform-3d"
             >
               Experience
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="nav-item ripple hover-lift transform-3d"
             >
@@ -103,31 +103,31 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm animate-slide-in-up">
             <nav className="py-3 sm:py-4 space-y-1 sm:space-y-2">
-              <button 
+              <button
                 onClick={() => scrollToSection('about')}
                 className="w-full text-left px-4 py-2 sm:py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-300 ripple icon-interactive link-interactive hover-lift transform-3d text-sm sm:text-base"
               >
                 About
               </button>
-              <button 
-                onClick={() => scrollToSection('about')}
+              <button
+                onClick={() => scrollToSection('skills')}
                 className="w-full text-left px-4 py-2 sm:py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-300 ripple icon-interactive link-interactive hover-lift transform-3d text-sm sm:text-base"
               >
                 Skills
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('projects')}
                 className="w-full text-left px-4 py-2 sm:py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-300 ripple icon-interactive link-interactive hover-lift transform-3d text-sm sm:text-base"
               >
                 Projects
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('experience')}
                 className="w-full text-left px-4 py-2 sm:py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-300 ripple icon-interactive link-interactive hover-lift transform-3d text-sm sm:text-base"
               >
                 Experience
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('contact')}
                 className="w-full text-left px-4 py-2 sm:py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-300 ripple icon-interactive link-interactive hover-lift transform-3d text-sm sm:text-base"
               >

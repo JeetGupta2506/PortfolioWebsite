@@ -12,9 +12,22 @@ const Experience = () => {
         description: 'Leading technical initiatives for Nexus Cell SVNIT, collaborating across campus cells for events and hackathons while mentoring juniors in full‑stack and AI/ML.',
         achievements: [
           'Collaborated with campus cells to plan and run events and hackathons',
-          'Mentored junior members in full‑stack development and AI/ML',
-          'Worked with senior developers to deliver new features and fix bugs on Nexus’s official website'
+          'Mentored junior members in full-stack development and AI/ML',
+          'Worked with senior developers to deliver new features and fix bugs on Nexus official website'
         ],
+      },
+      {
+        title: 'AI/ML Lead',
+        company: 'GDGC NIT Surat',
+        location: 'Surat, Gujarat, India',
+        period: 'August 2024 – Present',
+        description: 'Leading AI/ML initiatives at Google Developer Groups on Campus NIT Surat, organizing workshops, conducting sessions, and guiding students in machine learning and artificial intelligence.',
+        achievements: [
+          'Organized and conducted AI/ML workshops and technical sessions for students',
+          'Mentored team members in machine learning, deep learning, and AI technologies',
+          'Collaborated with Google Developer Student Clubs to promote AI/ML education on campus'
+        ],
+        technologies: ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'Google Cloud']
       },
       {
         title: 'AI ML Intern',
