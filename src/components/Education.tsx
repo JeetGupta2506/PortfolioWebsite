@@ -1,7 +1,18 @@
 import { GraduationCap, Calendar, MapPin, BookOpen } from 'lucide-react';
 
 const Education = () => {
-  const education = [
+  const education: Array<{
+    degree: string;
+    institution: string;
+    location: string;
+    period: string;
+    status: string;
+    gpa: string;
+    currentYear?: string;
+    description?: string;
+    board?: string;
+    skills?: string[];
+  }> = [
     {
       degree: 'Bachelor of Technology in Artificial Intelligence',
       institution: 'National Institute of Technology (NIT) Surat',
@@ -22,6 +33,7 @@ const Education = () => {
       location: 'Ahmedabad, Gujarat, India',
       period: '2022 - 2023',
       status: 'Completed',
+      board: 'CBSE',
       description: 'Science stream with focus on Mathematics, Physics, and Chemistry.',
       gpa: '87%'
     },
@@ -31,9 +43,10 @@ const Education = () => {
       location: 'Ahmedabad, Gujarat, India',
       period: '2019 - 2020',
       status: 'Completed',
+      board: 'ICSE',
       description: 'Completed foundational education with emphasis on core subjects.',
       gpa: '97%'
-      
+
     }
   ];
 
@@ -90,6 +103,11 @@ const Education = () => {
                           <MapPin size={14} />
                           <span className="text-xs sm:text-sm">{edu.location}</span>
                         </div>
+                        {edu.board && (
+                          <span className="bg-blue-100 text-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover-tilt transform-3d transition-all duration-300">
+                            {edu.board}
+                          </span>
+                        )}
                         <span className="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover-tilt transform-3d transition-all duration-300">
                           {edu.status}
                         </span>
