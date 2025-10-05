@@ -15,17 +15,17 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Predictive Analytics Platform',
-      description: 'Built a comprehensive ML platform for business forecasting using Python, TensorFlow, and AWS.',
-      image: '/api/placeholder/400/250',
+      title: 'MLXplore — Interactive ML Experimentation Platform',
+      description: 'Full-stack platform to explore, train, and visualize machine learning models (classification, regression, clustering). Features dataset preview, interactive algorithm playgrounds, model training, visualization of results, and hyperparameter tuning.',
+  image: '/MLXplore.png',
       category: 'ml',
-      technologies: ['Python', 'TensorFlow', 'AWS', 'React', 'PostgreSQL'],
-      github: '#',
-      live: '#',
+      technologies: ['React', 'Material-UI', 'TypeScript', 'FastAPI', 'Python', 'scikit-learn', 'pandas'],
+      github: 'https://github.com/JeetGupta2506/MLXplore',
+      live: 'https://ml-xplore-omega.vercel.app/',
       metrics: {
-        accuracy: '94.2%',
-        users: '2.5K+',
-        stars: '156'
+        demos: '20+',
+        users: '4K+',
+        stars: '180'
       },
       accentColor: 'blue'
     },
