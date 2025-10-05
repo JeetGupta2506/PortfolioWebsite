@@ -77,7 +77,7 @@ const Contact = () => {
             <form className="space-y-4 sm:space-y-6">
               {/* ...existing code... */}
               <div className="form-group">
-                <label htmlFor="name" className="form-label text-sm sm:text-base">Name</label>
+                <label htmlFor="name" className="form-label texīt-sm sm:text-base">Name</label>
                 <input
                   type="text"
                   id="name"
