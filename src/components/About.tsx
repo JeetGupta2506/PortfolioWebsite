@@ -1,4 +1,4 @@
-import React from 'react';
+import {} from 'react';
 
 const About = () => {
   return (
@@ -19,23 +19,19 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="space-responsive-y animate-slide-in-left animation-delay-400">
             <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 hover:shadow-2xl transition-all duration-500 hover-card-3d transform-3d">
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 will-change-transform">
-                Data Scientist & ML Engineer
-              </h3>
-              <div className="space-y-4">
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed animate-fade-in-up animation-delay-600">
-                  I'm a passionate data scientist with over 5 years of experience in transforming complex data into actionable insights.
-                  My expertise lies in building scalable machine learning solutions that drive real business value.
-                </p>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed animate-fade-in-up animation-delay-700">
-                  I specialize in predictive modeling, natural language processing, and computer vision applications.
-                  My approach combines deep technical knowledge with strong business acumen to deliver solutions that matter.
-                </p>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed animate-fade-in-up animation-delay-800">
-                  As the AI/ML Lead at GDGC NIT Surat, I actively contribute to the developer community by organizing workshops,
-                  conducting technical sessions, and mentoring students in artificial intelligence and machine learning technologies.
-                </p>
-              </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 will-change-transform">
+                  AI / ML Enthusiast · Fresher
+                </h3>
+                <div className="space-y-4">
+                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed animate-fade-in-up animation-delay-600">
+                    I am a fresher and a passionate AI/ML enthusiast focused on building practical machine learning projects and interactive visualizations.
+                    I enjoy taking ideas from data to working prototypes and learning the full stack around ML — from data collection and modeling to deployment and UX.
+                  </p>
+
+                
+
+                 
+                </div>
             </div>
           </div>
         </div>

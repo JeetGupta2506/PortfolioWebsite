@@ -19,7 +19,7 @@ const Education = () => {
       location: 'Surat, Gujarat, India',
       period: '2022 - 2026',
       currentYear: 'Third Year',
-      gpa: '8.5/10.0',
+  gpa: '7.66/10.0',
       status: 'Currently Pursuing',
       description: 'Specializing in machine learning, deep learning, computer vision, and natural language processing with strong foundations in mathematics and programming.',
       skills: [
