@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import ProjectModal from './ProjectModal';
 import { ExternalLink, Github, Eye, Code, TrendingUp, Users, Star } from 'lucide-react';
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', name: 'All', color: 'blue' },
-    { id: 'ml', name: 'Machine Learning', color: 'blue' },
-    { id: 'web', name: 'Web Development', color: 'blue' },
-    { id: 'data', name: 'Data Analysis', color: 'blue' },
-    { id: 'mobile', name: 'Mobile Apps', color: 'blue' }
-  ];
+  // categories removed to simplify project listing
 
   const projects = [
     {
       id: 1,
       title: 'MLXplore — Interactive ML Experimentation Platform',
       description: 'Full-stack platform to explore, train, and visualize machine learning models (classification, regression, clustering). Features dataset preview, interactive algorithm playgrounds, model training, visualization of results, and hyperparameter tuning.',
-  image: '/MLXplore.png',
-      category: 'ml',
+      image: '/MLXplore.png',
       technologies: ['React', 'Material-UI', 'TypeScript', 'FastAPI', 'Python', 'scikit-learn', 'pandas'],
       github: 'https://github.com/JeetGupta2506/MLXplore',
       live: 'https://ml-xplore-omega.vercel.app/',
@@ -31,17 +23,16 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'E-commerce Analytics Dashboard',
-      description: 'Developed a real-time analytics dashboard for e-commerce businesses with interactive visualizations.',
-      image: '/api/placeholder/400/250',
-      category: 'web',
-      technologies: ['React', 'Node.js', 'D3.js', 'MongoDB', 'Socket.io'],
-      github: '#',
-      live: '#',
+      title: 'Movie Recommendation System (Bollywood)',
+      description: 'A movie recommendation system built with Streamlit. I web-scraped a custom Bollywood movies dataset and implemented collaborative & content-based recommendation techniques with interactive filtering in the UI.',
+  image: '/MovieRecommendation.png',
+      technologies: ['Python', 'Streamlit', 'BeautifulSoup', 'scikit-learn', 'pandas'],
+  github: 'https://github.com/JeetGupta2506/Movie-Recommendation-System',
+  live: 'https://movierecommendationbollywood.streamlit.app/',
       metrics: {
-        performance: '98.5%',
-        users: '15K+',
-        conversion: '+23%'
+        models: '3',
+        dataset: '3K+',
+        users: '1.2K+'
       },
       accentColor: 'blue'
     },
@@ -50,7 +41,6 @@ const Projects = () => {
       title: 'Customer Segmentation Model',
       description: 'Implemented clustering algorithms to segment customers for targeted marketing campaigns.',
       image: '/api/placeholder/400/250',
-      category: 'data',
       technologies: ['Python', 'Scikit-learn', 'Pandas', 'Plotly', 'Jupyter'],
       github: '#',
       live: '#',
@@ -66,7 +56,6 @@ const Projects = () => {
       title: 'Real-time Chat Application',
       description: 'Built a scalable chat application with real-time messaging, file sharing, and user authentication.',
       image: '/api/placeholder/400/250',
-      category: 'web',
       technologies: ['React Native', 'Node.js', 'Socket.io', 'Firebase', 'Redux'],
       github: '#',
       live: '#',
@@ -79,20 +68,32 @@ const Projects = () => {
     }
   ];
 
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  const [selectedProject, setSelectedProject] = useState(null as any);
+  const filteredProjects = projects;
 
-  const getCategoryColorClasses = (color: string) => {
-    return 'text-blue-600 border-blue-600 hover:bg-blue-600 hover:text-white';
-  };
+  // category color helper removed
 
-  const getAccentColorClasses = (accentColor: string) => {
-    return 'text-blue-600';
-  };
-
+  // returns a color class for a metric type (keeps UI visually distinct per metric)
   const getMetricColorClasses = (metricType: string) => {
-    return 'text-blue-600';
+    switch (metricType) {
+      case 'accuracy':
+      case 'performance':
+      case 'roi':
+      case 'uptime':
+        return 'text-green-600';
+      case 'users':
+      case 'models':
+        return 'text-purple-600';
+      case 'stars':
+        return 'text-yellow-500';
+      case 'conversion':
+        return 'text-teal-600';
+      case 'clusters':
+      case 'messages':
+        return 'text-indigo-600';
+      default:
+        return 'text-blue-600';
+    }
   };
 
   return (
@@ -112,29 +113,15 @@ const Projects = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full animate-expand animation-delay-300"></div>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 animate-fade-in-up animation-delay-400">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-500 border-2 transform-3d hover-button-3d will-change-transform ${getCategoryColorClasses(category.color)} ${
-                activeCategory === category.id 
-                  ? 'bg-blue-600 text-white shadow-xl scale-105' 
-                  : 'bg-transparent'
-              } ripple`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
+        {/* Category filter removed - showing all projects */}
 
         {/* Projects Grid */}
         <div className="grid-responsive-cards mb-8 sm:mb-12">
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
-              className="card-interactive group ripple hover-card-3d transform-3d animate-scale-in will-change-transform"
+              onClick={() => setSelectedProject(project)}
+              className="card-interactive group ripple hover-card-3d transform-3d animate-scale-in will-change-transform cursor-pointer"
               style={{ animationDelay: `${500 + index * 150}ms` }}
             >
               {/* Project Image */}
@@ -148,10 +135,10 @@ const Projects = () => {
                 
                 {/* Action Buttons */}
                 <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <a href={project.github} className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
+                  <a href={project.github} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
                     <Github size={16} className="text-gray-700 icon-interactive" />
                   </a>
-                  <a href={project.live} className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
+                  <a href={project.live} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
                     <ExternalLink size={16} className="text-gray-700 icon-interactive" />
                   </a>
                 </div>
@@ -207,6 +194,8 @@ const Projects = () => {
                 <div className="flex space-x-2 sm:space-x-3">
                   <a 
                     href={project.github}
+                    onClick={(e) => e.stopPropagation()}
+                    target="_blank" rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
                   >
                     <Github size={14} />
@@ -214,6 +203,8 @@ const Projects = () => {
                   </a>
                   <a 
                     href={project.live}
+                    onClick={(e) => e.stopPropagation()}
+                    target="_blank" rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
                   >
                     <Eye size={14} />
@@ -224,6 +215,10 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {selectedProject && (
+          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        )}
 
         {/* View All Projects Button */}
         <div className="text-center animate-fade-in-up animation-delay-1000">
