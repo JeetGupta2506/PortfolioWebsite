@@ -6,62 +6,32 @@ const Skills = () => {
     {
       category: 'AI & Machine Learning',
       icon: Brain,
-      skills: [
-        { name: 'Machine Learning', level: 90 },
-        { name: 'Deep Learning', level: 82 },
-        { name: 'NLP', level: 85 },
-        { name: 'Computer Vision', level: 80 }
-      ]
+      skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision']
     },
     {
       category: 'Programming & Frameworks',
       icon: Code,
-      skills: [
-        { name: 'Python', level: 95 },
-        { name: 'TensorFlow', level: 85 },
-        { name: 'PyTorch', level: 82 },
-        { name: 'Scikit-learn', level: 90 }
-      ]
+      skills: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-learn']
     },
     {
       category: 'Data & Analytics',
       icon: BarChart3,
-      skills: [
-        { name: 'Data Analysis', level: 88 },
-        { name: 'Statistical Modeling', level: 80 },
-        { name: 'Pandas & NumPy', level: 92 },
-        { name: 'Data Visualization', level: 85 }
-      ]
+      skills: ['Data Analysis', 'Statistical Modeling', 'Pandas & NumPy', 'Data Visualization']
     },
     {
       category: 'Databases & Cloud',
       icon: Database,
-      skills: [
-        { name: 'SQL & Databases', level: 85 },
-        { name: 'PostgreSQL', level: 82 },
-        { name: 'MongoDB', level: 78 },
-        { name: 'AWS', level: 75 }
-      ]
+      skills: ['SQL & Databases', 'PostgreSQL', 'MongoDB', 'AWS']
     },
     {
       category: 'Web Development',
       icon: Globe,
-      skills: [
-        { name: 'React', level: 88 },
-        { name: 'Node.js', level: 80 },
-        { name: 'FastAPI', level: 85 },
-        { name: 'Flask', level: 82 }
-      ]
+      skills: ['React', 'Node.js', 'FastAPI', 'Flask']
     },
     {
       category: 'Tools & DevOps',
       icon: GitBranch,
-      skills: [
-        { name: 'Git', level: 90 },
-        { name: 'Docker', level: 75 },
-        { name: 'Kubernetes', level: 70 },
-        { name: 'Jupyter', level: 92 }
-      ]
+      skills: ['Git', 'Docker', 'Kubernetes', 'Jupyter']
     }
   ];
 
@@ -101,22 +71,14 @@ const Skills = () => {
                 <h3 className="text-lg font-bold text-gray-900">{category.category}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-gray-700 text-sm">{skill.name}</span>
-                      <span className="text-xs font-semibold text-blue-600">{skill.level}%</span>
-                    </div>
-                    <div className="progress-bar hover-scale-3d transform-3d">
-                      <div
-                        className="progress-fill will-change-transform"
-                        style={{
-                          width: `${skill.level}%`,
-                          animationDelay: `${500 + catIndex * 100 + skillIndex * 50}ms`
-                        }}
-                      ></div>
-                    </div>
+                  <div
+                    key={skill}
+                    className="flex items-center space-x-3 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+                  >
+                    <div className="w-2 h-2 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full"></div>
+                    <span className="font-medium text-sm">{skill}</span>
                   </div>
                 ))}
               </div>
