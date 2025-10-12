@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Database, Brain, BarChart3, TrendingUp, Layers, Globe, GitBranch } from 'lucide-react';
+import { Code, Database, Brain, BarChart3, Globe, GitBranch } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
@@ -35,14 +35,6 @@ const Skills = () => {
     }
   ];
 
-  const technologies = [
-    'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy',
-    'LangChain', 'LangGraph', 'OpenAI', 'Hugging Face',
-    'SQL', 'PostgreSQL', 'MongoDB', 'Redis',
-    'AWS', 'Google Cloud', 'Docker', 'Kubernetes',
-    'React', 'Node.js', 'Flask', 'FastAPI',
-    'Git', 'Jupyter', 'MLflow', 'DVC'
-  ];
 
   return (
     <section id="skills" className="section-padding bg-gradient-to-br from-white via-blue-50 to-teal-50 relative overflow-hidden">
@@ -57,7 +49,7 @@ const Skills = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8 animate-expand animation-delay-300"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {skillCategories.map((category, catIndex) => (
             <div
               key={category.category}
@@ -84,21 +76,6 @@ const Skills = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 animate-fade-in-up animation-delay-800">
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 text-center mb-6">Technologies & Tools</h3>
-          <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
-            {technologies.map((tech, index) => (
-              <span
-                key={tech}
-                className="tag-interactive hover-tilt transform-3d animate-scale-in"
-                style={{ animationDelay: `${900 + index * 30}ms` }}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>
