@@ -26,8 +26,7 @@ const Experience = () => {
           'Organized and conducted AI/ML workshops and technical sessions for students',
           'Mentored team members in machine learning, deep learning, and AI technologies',
           'Collaborated with Google Developer Student Clubs to promote AI/ML education on campus'
-        ],
-        technologies: ['Python', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'Google Cloud']
+        ]
       },
       {
         title: 'AI ML Intern',
