@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ProjectModal from './ProjectModal';
-import { ExternalLink, Github, Eye, Code, TrendingUp, Users, Star } from 'lucide-react';
+import { ExternalLink, Github, Eye } from 'lucide-react';
 
 const Projects = () => {
   // categories removed to simplify project listing
@@ -14,11 +14,6 @@ const Projects = () => {
       technologies: ['React', 'Material-UI', 'TypeScript', 'FastAPI', 'Python', 'scikit-learn', 'pandas'],
       github: 'https://github.com/JeetGupta2506/MLXplore',
       live: 'https://ml-xplore-omega.vercel.app/',
-      metrics: {
-        demos: '20+',
-        users: '4K+',
-        stars: '180'
-      },
       accentColor: 'blue'
     },
     {
@@ -29,11 +24,6 @@ const Projects = () => {
       technologies: ['Python', 'Streamlit', 'BeautifulSoup', 'scikit-learn', 'pandas'],
   github: 'https://github.com/JeetGupta2506/Movie-Recommendation-System',
   live: 'https://movierecommendationbollywood.streamlit.app/',
-      metrics: {
-        models: '3',
-        dataset: '3K+',
-        users: '1.2K+'
-      },
       accentColor: 'blue'
     },
     {
@@ -44,11 +34,6 @@ const Projects = () => {
       technologies: ['Python', 'Scikit-learn', 'Pandas', 'Plotly', 'Jupyter'],
       github: '#',
       live: '#',
-      metrics: {
-        clusters: '8',
-        accuracy: '89.7%',
-        roi: '+45%'
-      },
       accentColor: 'blue'
     },
     {
@@ -59,42 +44,12 @@ const Projects = () => {
       technologies: ['React Native', 'Node.js', 'Socket.io', 'Firebase', 'Redux'],
       github: '#',
       live: '#',
-      metrics: {
-        users: '8.2K+',
-        messages: '2.1M+',
-        uptime: '99.9%'
-      },
       accentColor: 'blue'
     }
   ];
 
   const [selectedProject, setSelectedProject] = useState(null as any);
   const filteredProjects = projects;
-
-  // category color helper removed
-
-  // returns a color class for a metric type (keeps UI visually distinct per metric)
-  const getMetricColorClasses = (metricType: string) => {
-    switch (metricType) {
-      case 'accuracy':
-      case 'performance':
-      case 'roi':
-      case 'uptime':
-        return 'text-green-600';
-      case 'users':
-      case 'models':
-        return 'text-purple-600';
-      case 'stars':
-        return 'text-yellow-500';
-      case 'conversion':
-        return 'text-teal-600';
-      case 'clusters':
-      case 'messages':
-        return 'text-indigo-600';
-      default:
-        return 'text-blue-600';
-    }
-  };
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
@@ -154,39 +109,14 @@ const Projects = () => {
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
+                <div className="flex flex-wrap gap-1 sm:gap-2 mb-6">
                   {project.technologies.map((tech, techIndex) => (
-                    <span 
+                    <span
                       key={techIndex}
                       className="tag-interactive hover-tilt transform-3d text-xs sm:text-sm"
                     >
                       {tech}
                     </span>
-                  ))}
-                </div>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4 sm:mb-6">
-                  {Object.entries(project.metrics).map(([key, value]) => (
-                    <div key={key} className="text-center hover-lift transform-3d transition-all duration-300">
-                      <div className="flex items-center justify-center mb-1">
-                        {key === 'accuracy' && <TrendingUp size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'users' && <Users size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'stars' && <Star size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'performance' && <TrendingUp size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'conversion' && <TrendingUp size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'clusters' && <Code size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'roi' && <TrendingUp size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'messages' && <Code size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                        {key === 'uptime' && <TrendingUp size={14} className={`${getMetricColorClasses(key)} icon-interactive`} />}
-                      </div>
-                      <div className={`text-xs sm:text-sm font-semibold ${getMetricColorClasses(key)}`}>
-                        {value}
-                      </div>
-                      <div className="text-xs text-gray-500 capitalize">
-                        {key}
-                      </div>
-                    </div>
                   ))}
                 </div>
 
