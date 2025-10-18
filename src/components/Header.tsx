@@ -34,7 +34,7 @@ const Header = () => {
             >
               <span>Jeet Gupta</span>
               <span className="mx-1 sm:mx-2 text-gray-400">·</span>
-              <span className="font-normal hidden sm:inline">Data Scientist</span>
+              <span className="font-normal hidden sm:inline">AI/ML Engineer</span>
             </button>
           </div>
 
