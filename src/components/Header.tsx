@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -13,57 +22,52 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white shadow-md'
+          : 'bg-white/95 backdrop-blur-sm'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           <button
             onClick={() => scrollToSection('home')}
-            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+            className="group"
             aria-label="Home"
           >
-            Jeet Gupta
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+                <span className="text-white font-bold text-lg">JG</span>
+              </div>
+              <div className="hidden sm:block">
+                <div className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  Jeet Gupta
+                </div>
+                <div className="text-xs text-gray-600">AI/ML Engineer</div>
+              </div>
+            </div>
           </button>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('skills')}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              Skills
-            </button>
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection('experience')}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
-            >
-              Contact
-            </button>
+          <nav className="hidden lg:flex items-center gap-1">
+            {['about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all capitalize"
+              >
+                {section}
+              </button>
+            ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
             <a
               href="https://github.com/JeetGupta2506"
               aria-label="GitHub"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
             >
               <Github size={20} />
             </a>
@@ -72,22 +76,23 @@ const Header = () => {
               aria-label="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-blue-600 transition-colors"
+              className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
             >
               <Linkedin size={20} />
             </a>
+            <div className="w-px h-6 bg-gray-300 mx-1"></div>
             <button
               onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 shadow-md hover:shadow-lg transition-all"
             >
-              <Mail size={16} />
-              Get in Touch
+              <Mail size={18} />
+              Let's Talk
             </button>
           </div>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
+            className="lg:hidden p-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-all"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -95,66 +100,47 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4">
-            <nav className="flex flex-col gap-4">
-              <button
-                onClick={() => scrollToSection('about')}
-                className="text-left text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection('skills')}
-                className="text-left text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Skills
-              </button>
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="text-left text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Projects
-              </button>
-              <button
-                onClick={() => scrollToSection('experience')}
-                className="text-left text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Experience
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="text-left text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Contact
-              </button>
+          <div className="lg:hidden border-t border-gray-200 py-6 animate-in slide-in-from-top duration-200">
+            <nav className="flex flex-col gap-2">
+              {['about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all capitalize font-medium"
+                >
+                  {section}
+                </button>
+              ))}
 
-              <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
+              <div className="flex items-center gap-3 pt-6 mt-4 border-t border-gray-200">
                 <a
                   href="https://github.com/JeetGupta2506"
                   aria-label="GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 p-3 text-gray-700 hover:text-gray-900 border border-gray-300 hover:bg-gray-50 rounded-lg transition-all"
                 >
                   <Github size={20} />
+                  <span className="text-sm font-medium">GitHub</span>
                 </a>
                 <a
                   href="https://www.linkedin.com/in/jeet-gupta-559099295"
                   aria-label="LinkedIn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                  className="flex-1 flex items-center justify-center gap-2 p-3 text-gray-700 hover:text-gray-900 border border-gray-300 hover:bg-gray-50 rounded-lg transition-all"
                 >
                   <Linkedin size={20} />
+                  <span className="text-sm font-medium">LinkedIn</span>
                 </a>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors"
-                >
-                  <Mail size={16} />
-                  Get in Touch
-                </button>
               </div>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md transition-all mt-2"
+              >
+                <Mail size={18} />
+                Let's Talk
+              </button>
             </nav>
           </div>
         )}
