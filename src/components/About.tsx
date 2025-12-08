@@ -28,7 +28,7 @@ const About = () => {
 
 Today, my focus is on the most dynamic field to emerge from this convergence: Generative AI. I see it as the culmination of ML, DL, and NLP, and I am dedicated to building the next generation of intelligent systems. My work involves leveraging Large Language Models to create solutions that can reason, generate, and collaborate—whether it's through building accurate RAG systems, customizing models for specific domains, or creating frameworks for AI agents to work in concert.
 
-I am not just an algorithm developer; I am an engineer who builds end-to-end systems that are reliable, scalable, and truly intelligent.
+I am not just an algorithm developer; I am an engineer who builds end-to-end systems that are reliable, scalable, and truly intelligent.f
                   </p>
 
                 

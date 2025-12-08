@@ -28,21 +28,21 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: 'Customer Segmentation Model',
-      description: 'Implemented clustering algorithms to segment customers for targeted marketing campaigns.',
-      image: '/api/placeholder/400/250',
-      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Plotly', 'Jupyter'],
-      github: '#',
-      live: '#',
+      title: 'Multi-Disease Classifier',
+      description: 'ML-based web app that predicts multiple diseases (Diabetes, Asthma, Blood Pressure, Typhoid) from symptoms and demographic data. Features user-friendly Streamlit interface, dedicated input forms, pre-trained models, and modular architecture using optimal algorithms for each disease.',
+      image: '/Medical-Classifier.png',
+      technologies: ['Python', 'TensorFlow', 'Keras', 'Scikit-learn', 'Pandas', 'Streamlit'],
+      github: 'https://github.com/JeetGupta2506/Multi-Disease-Prediction',
+      live: 'https://multi-disease-prediction-p55veox274sezpbejfkl8b.streamlit.app/',
       accentColor: 'blue'
     },
     {
       id: 4,
-      title: 'Real-time Chat Application',
-      description: 'Built a scalable chat application with real-time messaging, file sharing, and user authentication.',
-      image: '/api/placeholder/400/250',
-      technologies: ['React Native', 'Node.js', 'Socket.io', 'Firebase', 'Redux'],
-      github: '#',
+      title: 'Multi-Document Embedding Search Engine with Caching',
+      description: 'A semantic search engine that uses embeddings to search across multiple documents with intelligent caching for improved performance. Enables efficient document retrieval and similarity matching.',
+      image: '/RAG.png',
+      technologies: ['Python', 'Sentence-Transformers', 'FAISS', 'Redis', 'Flask'],
+      github: 'https://github.com/JeetGupta2506/Multi-document-Embedding-Search-Engine-with-Caching',
       live: '#',
       accentColor: 'blue'
     }
