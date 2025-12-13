@@ -1,16 +1,18 @@
-import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown, Download, Eye, Github, Linkedin, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import ResumeModal from './ResumeModal';
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   const roles = ['Data Scientist', 'ML Engineer', 'GenAI Engineer'];
 
   useEffect(() => {
     const currentRoleText = roles[currentRole];
-    
+
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         // Typing forward
@@ -43,7 +45,7 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Simple background with original gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50 animate-gradient-x transform-gpu"></div>
-      
+
       {/* Floating particles with original colors */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-400 rounded-full animate-float-3d transform-3d opacity-70"></div>
@@ -52,7 +54,7 @@ const Hero = () => {
         <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-teal-500 rounded-full animate-float transform-3d opacity-50 animation-delay-1000"></div>
         <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300 rounded-full animate-float-delayed transform-3d opacity-40 animation-delay-500"></div>
       </div>
-      
+
       <div className="container-responsive relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
@@ -66,16 +68,23 @@ const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed animate-fade-in-up animation-delay-400 mx-auto lg:mx-0">
-                Transforming complex data into actionable insights and building intelligent systems 
+                Transforming complex data into actionable insights and building intelligent systems
                 that drive business value through advanced analytics and machine learning.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 animate-fade-in-up animation-delay-600">
-                <a href="/resume.pdf" download className="btn-primary flex items-center space-x-3 group ripple hover-button-3d transform-3d">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 animate-fade-in-up animation-delay-600">
+                <button
+                  onClick={() => setIsResumeOpen(true)}
+                  className="btn-primary flex items-center space-x-3 group ripple hover-button-3d transform-3d"
+                >
+                  <Eye size={20} className="group-hover:animate-pulse transition-transform duration-500 will-change-transform" />
+                  <span className="group-hover:animate-pulse will-change-opacity">View Resume</span>
+                </button>
+                <a href="/resume.pdf" download className="btn-secondary flex items-center space-x-3 group ripple hover-button-3d transform-3d">
                   <Download size={20} className="group-hover:animate-bounce transition-transform duration-500 will-change-transform" />
-                  <span className="group-hover:animate-pulse will-change-opacity">Download Resume</span>
+                  <span>Download</span>
                 </a>
-                <button 
+                <button
                   onClick={scrollToAbout}
                   className="btn-secondary ripple hover-button-3d transform-3d"
                 >
@@ -113,7 +122,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll button with original colors */}
-      <button 
+      <button
         onClick={scrollToAbout}
         className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:animate-pulse transition-all duration-500 hover-lift transform-3d ripple will-change-transform"
         aria-label="Scroll to about section"
@@ -122,6 +131,9 @@ const Hero = () => {
           <ChevronDown size={28} className="text-gray-500 hover:text-blue-600 transition-colors icon-bounce will-change-transform" />
         </div>
       </button>
+
+      {/* Resume Preview Modal */}
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </section>
   );
 };
