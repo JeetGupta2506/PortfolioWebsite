@@ -42,17 +42,17 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden dark:bg-gray-900">
       {/* Simple background with original gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50 animate-gradient-x transform-gpu"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 animate-gradient-x transform-gpu"></div>
 
       {/* Floating particles with original colors */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-400 rounded-full animate-float-3d transform-3d opacity-70"></div>
-        <div className="absolute top-3/4 right-1/4 w-4 h-4 bg-teal-400 rounded-full animate-float-delayed transform-3d opacity-60"></div>
-        <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-blue-600 rounded-full animate-pulse-slow transform-3d opacity-80"></div>
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-teal-500 rounded-full animate-float transform-3d opacity-50 animation-delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300 rounded-full animate-float-delayed transform-3d opacity-40 animation-delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-400 dark:bg-blue-500 rounded-full animate-float-3d transform-3d opacity-70"></div>
+        <div className="absolute top-3/4 right-1/4 w-4 h-4 bg-teal-400 dark:bg-teal-500 rounded-full animate-float-delayed transform-3d opacity-60"></div>
+        <div className="absolute top-1/2 left-3/4 w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-pulse-slow transform-3d opacity-80"></div>
+        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-teal-500 dark:bg-teal-400 rounded-full animate-float transform-3d opacity-50 animation-delay-1000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-blue-300 dark:bg-blue-600 rounded-full animate-float-delayed transform-3d opacity-40 animation-delay-500"></div>
       </div>
 
       <div className="container-responsive relative z-10">
@@ -60,14 +60,14 @@ const Hero = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             {/* Left: Introduction */}
             <div className="order-2 lg:order-1 text-center lg:text-left space-y-4 sm:space-y-6 md:space-y-8">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight animate-slide-in-left will-change-transform">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 dark:text-white leading-tight animate-slide-in-left will-change-transform">
                 <span className="block mb-2">I'm a</span>
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent block min-h-[1.2em] relative">
+                <span className="bg-gradient-to-r from-blue-600 to-teal-600 dark:from-blue-400 dark:to-teal-400 bg-clip-text text-transparent block min-h-[1.2em] relative">
                   {displayText}
-                  <span className="animate-blink-cursor border-r-2 border-blue-600 ml-1"></span>
+                  <span className="animate-blink-cursor border-r-2 border-blue-600 dark:border-blue-400 ml-1"></span>
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed animate-fade-in-up animation-delay-400 mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed animate-fade-in-up animation-delay-400 mx-auto lg:mx-0">
                 Transforming complex data into actionable insights and building intelligent systems
                 that drive business value through advanced analytics and machine learning.
               </p>
@@ -75,8 +75,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 animate-fade-in-up animation-delay-600">
                 <button
                   onClick={() => setIsResumeOpen(true)}
-                  className="btn-primary flex items-center space-x-3 group ripple hover-button-3d transform-3d"
-                >
+                  className="btn-primary flex items-center space-x-3 group ripple hover-button-3d transform-3d">
                   <Eye size={20} className="group-hover:animate-pulse transition-transform duration-500 will-change-transform" />
                   <span className="group-hover:animate-pulse will-change-opacity">View Resume</span>
                 </button>
@@ -94,13 +93,13 @@ const Hero = () => {
 
               <div className="flex justify-center lg:justify-start gap-4 sm:gap-6 animate-fade-in-up animation-delay-800">
                 <a href="https://github.com/JeetGupta2506" className="social-link group ripple hover-lift transform-3d stagger-1" target="_blank" rel="noopener noreferrer">
-                  <Github size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive will-change-transform" />
+                  <Github size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors icon-interactive will-change-transform" />
                 </a>
                 <a href="https://www.linkedin.com/in/jeet-gupta-559099295" className="social-link group ripple hover-lift transform-3d stagger-2" target="_blank" rel="noopener noreferrer">
-                  <Linkedin size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive will-change-transform" />
+                  <Linkedin size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors icon-interactive will-change-transform" />
                 </a>
                 <a href="mailto:guptajeet2506@gmail.com" className="social-link group ripple hover-lift transform-3d stagger-3">
-                  <Mail size={24} className="text-gray-700 group-hover:text-blue-600 transition-colors icon-interactive will-change-transform" />
+                  <Mail size={24} className="text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors icon-interactive will-change-transform" />
                 </a>
               </div>
             </div>
@@ -112,9 +111,9 @@ const Hero = () => {
                   <img src="/profile.jpg" alt="Profile photo" className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 will-change-transform" />
                 </div>
                 {/* Decorative elements around photo */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 rounded-full animate-float-3d transform-3d opacity-60 animation-delay-300"></div>
-                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-teal-400 rounded-full animate-float-delayed transform-3d opacity-50 animation-delay-600"></div>
-                <div className="absolute top-1/2 -right-8 w-4 h-4 bg-blue-300 rounded-full animate-pulse-slow transform-3d opacity-40 animation-delay-900"></div>
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 dark:bg-blue-500 rounded-full animate-float-3d transform-3d opacity-60 animation-delay-300"></div>
+                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-teal-400 dark:bg-teal-500 rounded-full animate-float-delayed transform-3d opacity-50 animation-delay-600"></div>
+                <div className="absolute top-1/2 -right-8 w-4 h-4 bg-blue-300 dark:bg-blue-600 rounded-full animate-pulse-slow transform-3d opacity-40 animation-delay-900"></div>
               </div>
             </div>
           </div>
@@ -127,8 +126,8 @@ const Hero = () => {
         className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:animate-pulse transition-all duration-500 hover-lift transform-3d ripple will-change-transform"
         aria-label="Scroll to about section"
       >
-        <div className="p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:bg-white">
-          <ChevronDown size={28} className="text-gray-500 hover:text-blue-600 transition-colors icon-bounce will-change-transform" />
+        <div className="p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:bg-white dark:hover:bg-gray-700">
+          <ChevronDown size={28} className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors icon-bounce will-change-transform" />
         </div>
       </button>
 

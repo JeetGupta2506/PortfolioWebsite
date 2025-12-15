@@ -16,18 +16,24 @@ const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white shadow-md'
-          : 'bg-white/95 backdrop-blur-sm'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? 'bg-white shadow-md'
+        : 'bg-white/95 backdrop-blur-sm'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -50,7 +56,7 @@ const Header = () => {
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {['about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+            {['about', 'skills', 'education', 'projects', 'experience', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -102,7 +108,7 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 py-6 animate-in slide-in-from-top duration-200">
             <nav className="flex flex-col gap-2">
-              {['about', 'skills', 'projects', 'experience', 'contact'].map((section) => (
+              {['about', 'skills', 'education', 'projects', 'experience', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}

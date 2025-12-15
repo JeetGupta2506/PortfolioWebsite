@@ -9,10 +9,51 @@
 
 body {
   overflow-x: hidden;
+  @apply bg-white text-gray-900 transition-colors duration-300;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: Focus Styles */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
 }
 
 /* Enhanced Micro-Interactions */
 @layer components {
+
   /* Button States & Interactions */
   .btn-primary {
     @apply bg-gradient-to-r from-blue-600 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-500 ease-out;
@@ -33,8 +74,8 @@ body {
   }
 
   .btn-ghost {
-    @apply text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-out;
-    @apply hover:bg-gray-100 hover:text-gray-900 hover:shadow-lg hover:-translate-y-1 hover:scale-105;
+    @apply text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-out;
+    @apply hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-gray-500/30 focus:ring-offset-1;
     @apply transform-gpu will-change-transform;
@@ -42,8 +83,8 @@ body {
 
   /* Card Interactions */
   .card-interactive {
-    @apply bg-white rounded-xl shadow-md transition-all duration-500 ease-out;
-    @apply hover:shadow-2xl hover:shadow-gray-500/25 hover:-translate-y-3 hover:scale-[1.03];
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-md transition-all duration-500 ease-out;
+    @apply hover:shadow-2xl hover:shadow-gray-500/25 dark:hover:shadow-blue-500/25 hover:-translate-y-3 hover:scale-[1.03];
     @apply active:scale-[0.98] active:shadow-lg;
     @apply focus-within:ring-4 focus-within:ring-blue-500/20 focus-within:ring-offset-2;
     @apply transform-gpu will-change-transform backdrop-blur-sm;
@@ -58,10 +99,10 @@ body {
 
   /* Input Field Interactions */
   .input-field {
-  @apply w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-300 ease-out;
-    @apply focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:scale-[1.03] focus:-translate-y-1;
-    @apply hover:border-gray-400 hover:shadow-md hover:-translate-y-0.5;
-    @apply placeholder:text-gray-400 placeholder:transition-colors placeholder:duration-300;
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white transition-all duration-300 ease-out;
+    @apply focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 dark:focus:border-blue-400 focus:scale-[1.03] focus:-translate-y-1;
+    @apply hover:border-gray-400 dark:hover:border-gray-500 hover:shadow-md hover:-translate-y-0.5;
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-500 placeholder:transition-colors placeholder:duration-300;
     @apply focus:placeholder:text-blue-400;
     @apply transform-gpu will-change-transform;
   }
@@ -72,16 +113,16 @@ body {
 
   /* Link Interactions */
   .link-interactive {
-  @apply text-gray-600 transition-all duration-300 ease-out;
-    @apply hover:text-blue-600 hover:scale-110 hover:translate-x-2;
+    @apply text-gray-600 dark:text-gray-300 transition-all duration-300 ease-out;
+    @apply hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 hover:translate-x-2;
     @apply active:scale-95;
     @apply focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1;
     @apply transform-gpu will-change-transform;
   }
 
   .link-underline {
-    @apply relative text-gray-700 transition-all duration-300 ease-out;
-    @apply hover:text-blue-600;
+    @apply relative text-gray-700 dark:text-gray-300 transition-all duration-300 ease-out;
+    @apply hover:text-blue-600 dark:hover:text-blue-400;
   }
 
   .link-underline::after {
@@ -223,14 +264,37 @@ body {
   }
 
   /* Stagger Animation Classes */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
-  .stagger-6 { animation-delay: 0.6s; }
-  .stagger-7 { animation-delay: 0.7s; }
-  .stagger-8 { animation-delay: 0.8s; }
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+
+  .stagger-6 {
+    animation-delay: 0.6s;
+  }
+
+  .stagger-7 {
+    animation-delay: 0.7s;
+  }
+
+  .stagger-8 {
+    animation-delay: 0.8s;
+  }
 
   /* Responsive Utilities */
   .container-responsive {
@@ -279,6 +343,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -288,15 +353,19 @@ body {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
 }
 
 @keyframes blinkCursor {
-  from, to {
+
+  from,
+  to {
     border-color: transparent;
   }
+
   50% {
     border-color: #2563eb;
   }
@@ -307,6 +376,7 @@ body {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -318,6 +388,7 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
+
   100% {
     opacity: 0;
     transform: translateX(30px);
@@ -329,6 +400,7 @@ body {
     opacity: 0;
     transform: translateY(50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -340,6 +412,7 @@ body {
     opacity: 0;
     transform: translateY(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -351,6 +424,7 @@ body {
     opacity: 0;
     transform: translateX(-100px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -362,6 +436,7 @@ body {
     opacity: 0;
     transform: translateX(100px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -373,6 +448,7 @@ body {
     opacity: 0;
     transform: translateY(100px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -384,6 +460,7 @@ body {
     opacity: 0;
     transform: scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -395,6 +472,7 @@ body {
     opacity: 0;
     transform: rotate(-180deg) scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: rotate(0deg) scale(1);
@@ -406,17 +484,21 @@ body {
     opacity: 0;
     transform: scale(0.2) translateY(-100px);
   }
+
   30% {
     opacity: 0.7;
     transform: scale(1.1) translateY(0px);
   }
+
   50% {
     opacity: 1;
     transform: scale(0.95) translateY(-10px);
   }
+
   70% {
     transform: scale(1.02) translateY(0px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -424,10 +506,13 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.05);
@@ -435,9 +520,12 @@ body {
 }
 
 @keyframes pulseSlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.8;
   }
+
   50% {
     opacity: 1;
   }
@@ -447,48 +535,63 @@ body {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-30px) rotate(5deg);
   }
 }
 
 @keyframes floatReverse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(20px) rotate(-5deg);
   }
 }
 
 @keyframes gradientX {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   25% {
     background-position: 100% 50%;
   }
+
   50% {
     background-position: 100% 100%;
   }
+
   75% {
     background-position: 0% 100%;
   }
@@ -498,64 +601,87 @@ body {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
 }
 
 @keyframes wiggle {
-  0%, 7%, 100% {
+
+  0%,
+  7%,
+  100% {
     transform: rotate(0deg);
   }
+
   15% {
     transform: rotate(-3deg);
   }
+
   20% {
     transform: rotate(3deg);
   }
+
   25% {
     transform: rotate(-3deg);
   }
+
   30% {
     transform: rotate(3deg);
   }
+
   35% {
     transform: rotate(-1deg);
   }
+
   40% {
     transform: rotate(1deg);
   }
 }
 
 @keyframes heartbeat {
-  0%, 50%, 100% {
+
+  0%,
+  50%,
+  100% {
     transform: scale(1);
   }
-  25%, 75% {
+
+  25%,
+  75% {
     transform: scale(1.1);
   }
 }
 
 /* 3D Transform Animations */
 @keyframes tilt3d {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px);
   }
+
   25% {
     transform: perspective(1200px) rotateX(3deg) rotateY(3deg) translateZ(15px);
   }
+
   50% {
     transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(30px);
   }
+
   75% {
     transform: perspective(1200px) rotateX(-3deg) rotateY(-3deg) translateZ(15px);
   }
 }
 
 @keyframes float3d {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: perspective(1200px) translateZ(0px) translateY(0px) rotateY(0deg);
   }
+
   50% {
     transform: perspective(1200px) translateZ(30px) translateY(-30px) rotateY(10deg);
   }
@@ -565,6 +691,7 @@ body {
   0% {
     transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px);
   }
+
   100% {
     transform: perspective(1200px) rotateX(8deg) rotateY(8deg) translateZ(30px);
   }
@@ -574,28 +701,36 @@ body {
   0% {
     transform: perspective(1200px) translateZ(0px);
   }
+
   50% {
     transform: perspective(1200px) translateZ(-15px);
   }
+
   100% {
     transform: perspective(1200px) translateZ(0px);
   }
 }
 
 @keyframes iconFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: perspective(1200px) translateZ(0px) rotateY(0deg) rotateX(0deg);
   }
+
   50% {
     transform: perspective(1200px) translateZ(25px) rotateY(15deg) rotateX(5deg);
   }
 }
 
 @keyframes morphing {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: rotate(0deg);
   }
+
   50% {
     border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
     transform: rotate(180deg);
@@ -868,6 +1003,7 @@ html {
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

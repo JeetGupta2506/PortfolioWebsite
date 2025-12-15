@@ -1,37 +1,91 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Code, Database, Brain, BarChart3, Globe, GitBranch } from 'lucide-react';
 
 const Skills = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const element = document.getElementById('skills');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
   const skillCategories = [
     {
       category: 'AI & Machine Learning',
       icon: Brain,
-      skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision']
+      skills: [
+        { name: 'Machine Learning', level: 90 },
+        { name: 'Deep Learning', level: 85 },
+        { name: 'NLP', level: 80 },
+        { name: 'Computer Vision', level: 75 }
+      ]
     },
     {
       category: 'Programming & Frameworks',
       icon: Code,
-      skills: ['Python', 'TensorFlow', 'PyTorch', 'Scikit-learn']
+      skills: [
+        { name: 'Python', level: 95 },
+        { name: 'TensorFlow', level: 85 },
+        { name: 'PyTorch', level: 80 },
+        { name: 'Scikit-learn', level: 90 }
+      ]
     },
     {
       category: 'Data & Analytics',
       icon: BarChart3,
-      skills: ['Data Analysis', 'Statistical Modeling', 'Pandas & NumPy', 'Data Visualization']
+      skills: [
+        { name: 'Data Analysis', level: 90 },
+        { name: 'Statistical Modeling', level: 85 },
+        { name: 'Pandas & NumPy', level: 95 },
+        { name: 'Data Visualization', level: 85 }
+      ]
     },
     {
       category: 'Databases & Cloud',
       icon: Database,
-      skills: ['SQL & Databases', 'PostgreSQL', 'MongoDB', 'AWS']
+      skills: [
+        { name: 'SQL & Databases', level: 85 },
+        { name: 'PostgreSQL', level: 80 },
+        { name: 'MongoDB', level: 75 },
+        { name: 'AWS', level: 70 }
+      ]
     },
     {
       category: 'Web Development',
       icon: Globe,
-      skills: ['React', 'Node.js', 'FastAPI', 'Flask']
+      skills: [
+        { name: 'React', level: 85 },
+        { name: 'Node.js', level: 75 },
+        { name: 'FastAPI', level: 80 },
+        { name: 'Flask', level: 85 }
+      ]
     },
     {
       category: 'Tools & DevOps',
       icon: GitBranch,
-      skills: ['Git', 'Docker', 'Kubernetes', 'Jupyter']
+      skills: [
+        { name: 'Git', level: 90 },
+        { name: 'Docker', level: 75 },
+        { name: 'Kubernetes', level: 65 },
+        { name: 'Jupyter', level: 95 }
+      ]
     }
   ];
 
@@ -63,14 +117,22 @@ const Skills = () => {
                 <h3 className="text-lg font-bold text-gray-900">{category.category}</h3>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div
-                    key={skill}
-                    className="flex items-center space-x-3 text-gray-700 hover:text-blue-600 transition-colors duration-300"
-                  >
-                    <div className="w-2 h-2 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full"></div>
-                    <span className="font-medium text-sm">{skill}</span>
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-sm text-gray-700">{skill.name}</span>
+                      <span className="text-xs font-semibold text-blue-600">{skill.level}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-blue-600 to-teal-600 rounded-full transition-all duration-1000 ease-out"
+                        style={{
+                          width: isVisible ? `${skill.level}%` : '0%',
+                          transitionDelay: `${catIndex * 100 + skillIndex * 50}ms`
+                        }}
+                      ></div>
+                    </div>
                   </div>
                 ))}
               </div>

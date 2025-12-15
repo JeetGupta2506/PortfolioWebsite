@@ -1,0 +1,242 @@
+{
+  "personal_info": {
+    "name": "Jeet Gupta",
+    "roles": [
+      "Data Scientist",
+      "ML Engineer",
+      "GenAI Engineer"
+    ],
+    "tagline": "Transforming complex data into actionable insights and building intelligent systems that drive business value through advanced analytics and machine learning.",
+    "title": "AI / ML Enthusiast · Fresher",
+    "profile_image": "/profile.jpg",
+    "resume_pdf": "/resume.pdf"
+  },
+  "contact": {
+    "email": "guptajeet2506@gmail.com",
+    "phone": "+91 7984060375",
+    "location": "Ahmedabad, India",
+    "social_media": {
+      "github": "https://github.com/JeetGupta2506",
+      "linkedin": "https://www.linkedin.com/in/jeet-gupta-559099295"
+    }
+  },
+  "about": {
+    "description": "My journey in AI is built on a comprehensive foundation. I started with the core principles of Machine Learning, mastering the algorithms that extract patterns from data. This led me to the world of Deep Learning, where I built and trained complex neural networks for vision and language tasks. My passion for language and understanding naturally steered me toward Natural Language Processing (NLP), where I worked on everything from text classification to machine translation.\n\nToday, my focus is on the most dynamic field to emerge from this convergence: Generative AI. I see it as the culmination of ML, DL, and NLP, and I am dedicated to building the next generation of intelligent systems. My work involves leveraging Large Language Models to create solutions that can reason, generate, and collaborate—whether it's through building accurate RAG systems, customizing models for specific domains, or creating frameworks for AI agents to work in concert.\n\nI am not just an algorithm developer; I am an engineer who builds end-to-end systems that are reliable, scalable, and truly intelligent."
+  },
+  "education": [
+    {
+      "degree": "Bachelor of Technology in Artificial Intelligence",
+      "institution": "National Institute of Technology (NIT) Surat",
+      "location": "Surat, Gujarat, India",
+      "period": "2022 - 2026",
+      "current_year": "Third Year",
+      "gpa": "7.66/10.0",
+      "status": "Currently Pursuing",
+      "description": "Specializing in machine learning, deep learning, computer vision, and natural language processing with strong foundations in mathematics and programming.",
+      "skills": [
+        "Python",
+        "TensorFlow",
+        "PyTorch",
+        "Scikit-learn",
+        "OpenCV",
+        "Pandas",
+        "NumPy",
+        "Matplotlib",
+        "SQL",
+        "Git",
+        "Docker"
+      ]
+    },
+    {
+      "degree": "Higher Secondary Education (Class XII)",
+      "institution": "Satyameva Jayate International School",
+      "location": "Ahmedabad, Gujarat, India",
+      "period": "2022 - 2023",
+      "status": "Completed",
+      "board": "CBSE",
+      "description": "Science stream with focus on Mathematics, Physics, and Chemistry.",
+      "gpa": "87%"
+    },
+    {
+      "degree": "Secondary Education (Class X)",
+      "institution": "Zydus School for Excellence",
+      "location": "Ahmedabad, Gujarat, India",
+      "period": "2019 - 2020",
+      "status": "Completed",
+      "board": "ICSE",
+      "description": "Completed foundational education with emphasis on core subjects.",
+      "gpa": "97%"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Technical Lead",
+      "company": "Nexus Cell SVNIT",
+      "location": "Surat, Gujarat, India",
+      "period": "July 2025 – Present",
+      "type": "Campus Leadership",
+      "description": "Leading technical initiatives for Nexus Cell SVNIT, collaborating across campus cells for events and hackathons while mentoring juniors in full‑stack and AI/ML.",
+      "achievements": [
+        "Collaborated with campus cells to plan and run events and hackathons",
+        "Mentored junior members in full-stack development and AI/ML",
+        "Worked with senior developers to deliver new features and fix bugs on Nexus official website"
+      ]
+    },
+    {
+      "title": "AI/ML Lead",
+      "company": "GDGC NIT Surat",
+      "location": "Surat, Gujarat, India",
+      "period": "August 2024 – Present",
+      "type": "Campus Leadership",
+      "description": "Leading AI/ML initiatives at Google Developer Groups on Campus NIT Surat, organizing workshops, conducting sessions, and guiding students in machine learning and artificial intelligence.",
+      "achievements": [
+        "Organized and conducted AI/ML workshops and technical sessions for students",
+        "Mentored team members in machine learning, deep learning, and AI technologies",
+        "Collaborated with Google Developer Student Clubs to promote AI/ML education on campus"
+      ]
+    },
+    {
+      "title": "AI ML Intern",
+      "company": "Accenture",
+      "location": "Remote",
+      "period": "May 2025 – July 2025",
+      "type": "Internship",
+      "description": "Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.",
+      "achievements": [
+        "Coordinated with the team to develop chatbots and agents for Bank of Baroda's web application",
+        "Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n",
+        "Integrated generative AI workflows to streamline development of conversational agents"
+      ],
+      "technologies": [
+        "Python",
+        "LangChain",
+        "LangGraph",
+        "MCP",
+        "CrewAI",
+        "n8n",
+        "OpenAI"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Fundamentals of AI Agents Using RAG and LangChain",
+      "issuer": "IBM",
+      "url": "https://coursera.org/share/523440f624ef9a5be5b217c877232ad0",
+      "image": "/certificates/rag-langchain.jpg"
+    },
+    {
+      "name": "Machine Learning with Python",
+      "issuer": "IBM",
+      "url": "https://coursera.org/share/af8c43fc51a2d006d9ae7d0f65550e27",
+      "image": "/certificates/ml-python.jpg"
+    }
+  ],
+  "skills": {
+    "AI & Machine Learning": [
+      "Machine Learning",
+      "Deep Learning",
+      "NLP",
+      "Computer Vision"
+    ],
+    "Programming & Frameworks": [
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn"
+    ],
+    "Data & Analytics": [
+      "Data Analysis",
+      "Statistical Modeling",
+      "Pandas & NumPy",
+      "Data Visualization"
+    ],
+    "Databases & Cloud": [
+      "SQL & Databases",
+      "PostgreSQL",
+      "MongoDB",
+      "AWS"
+    ],
+    "Web Development": [
+      "React",
+      "Node.js",
+      "FastAPI",
+      "Flask"
+    ],
+    "Tools & DevOps": [
+      "Git",
+      "Docker",
+      "Kubernetes",
+      "Jupyter"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "MLXplore — Interactive ML Experimentation Platform",
+      "description": "Full-stack platform to explore, train, and visualize machine learning models (classification, regression, clustering). Features dataset preview, interactive algorithm playgrounds, model training, visualization of results, and hyperparameter tuning.",
+      "image": "/MLXplore.png",
+      "technologies": [
+        "React",
+        "Material-UI",
+        "TypeScript",
+        "FastAPI",
+        "Python",
+        "scikit-learn",
+        "pandas"
+      ],
+      "github": "https://github.com/JeetGupta2506/MLXplore",
+      "live": "https://ml-xplore-omega.vercel.app/",
+      "accent_color": "blue"
+    },
+    {
+      "id": 2,
+      "title": "Movie Recommendation System (Bollywood)",
+      "description": "A movie recommendation system built with Streamlit. I web-scraped a custom Bollywood movies dataset and implemented collaborative & content-based recommendation techniques with interactive filtering in the UI.",
+      "image": "/MovieRecommendation.png",
+      "technologies": [
+        "Python",
+        "Streamlit",
+        "BeautifulSoup",
+        "scikit-learn",
+        "pandas"
+      ],
+      "github": "https://github.com/JeetGupta2506/Movie-Recommendation-System",
+      "live": "https://movierecommendationbollywood.streamlit.app/",
+      "accent_color": "blue"
+    },
+    {
+      "id": 3,
+      "title": "Multi-Disease Classifier",
+      "description": "ML-based web app that predicts multiple diseases (Diabetes, Asthma, Blood Pressure, Typhoid) from symptoms and demographic data. Features user-friendly Streamlit interface, dedicated input forms, pre-trained models, and modular architecture using optimal algorithms for each disease.",
+      "image": "/Medical-Classifier.png",
+      "technologies": [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "Scikit-learn",
+        "Pandas",
+        "Streamlit"
+      ],
+      "github": "https://github.com/JeetGupta2506/Multi-Disease-Prediction",
+      "live": "https://multi-disease-prediction-p55veox274sezpbejfkl8b.streamlit.app/",
+      "accent_color": "blue"
+    },
+    {
+      "id": 4,
+      "title": "Multi-Document Embedding Search Engine with Caching",
+      "description": "A semantic search engine that uses embeddings to search across multiple documents with intelligent caching for improved performance. Enables efficient document retrieval and similarity matching.",
+      "image": "/RAG.png",
+      "technologies": [
+        "Python",
+        "Sentence-Transformers",
+        "FAISS",
+        "Redis",
+        "Flask"
+      ],
+      "github": "https://github.com/JeetGupta2506/Multi-document-Embedding-Search-Engine-with-Caching",
+      "live": "#",
+      "accent_color": "blue"
+    }
+  ]
+}
