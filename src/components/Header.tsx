@@ -43,9 +43,11 @@ const Header = () => {
             aria-label="Home"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                <span className="text-white font-bold text-lg">JG</span>
-              </div>
+              <img
+                src="/favicon.png"
+                alt="Jeet Gupta Logo"
+                className="w-10 h-10 rounded-full object-cover shadow-lg group-hover:shadow-xl transition-shadow"
+              />
               <div className="hidden sm:block">
                 <div className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                   Jeet Gupta

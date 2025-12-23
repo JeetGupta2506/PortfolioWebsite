@@ -243,25 +243,6 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-
-            {/* Social Links centered below contact info */}
-            <div className="space-y-4 flex flex-col items-center animate-fade-in-up animation-delay-900">
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-900 will-change-transform">Follow Me</h4>
-              <div className="flex space-x-3 sm:space-x-4 justify-center">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    className="social-link ripple hover-lift transform-3d animate-bounce-in will-change-transform"
-                    style={{ animationDelay: `${1000 + index * 100}ms` }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <social.icon size={20} className="text-blue-600 icon-interactive" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

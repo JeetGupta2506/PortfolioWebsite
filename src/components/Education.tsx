@@ -13,46 +13,46 @@ const Education = () => {
     board?: string;
     skills?: string[];
   }> = [
-    {
-      degree: 'Bachelor of Technology in Artificial Intelligence',
-      institution: 'National Institute of Technology (NIT) Surat',
-      location: 'Surat, Gujarat, India',
-      period: '2022 - 2026',
-      currentYear: 'Third Year',
-  gpa: '7.66/10.0',
-      status: 'Currently Pursuing',
-      description: 'Specializing in machine learning, deep learning, computer vision, and natural language processing with strong foundations in mathematics and programming.',
-      skills: [
-        'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV',
-        'Pandas', 'NumPy', 'Matplotlib', 'SQL', 'Git', 'Docker'
-      ]
-    },
-    {
-      degree: 'Higher Secondary Education (Class XII)',
-      institution: 'Satyameva Jayate International School',
-      location: 'Ahmedabad, Gujarat, India',
-      period: '2022 - 2023',
-      status: 'Completed',
-      board: 'CBSE',
-      description: 'Science stream with focus on Mathematics, Physics, and Chemistry.',
-      gpa: '87%'
-    },
-    {
-      degree: 'Secondary Education (Class X)',
-      institution: 'Zydus School for Excellence',
-      location: 'Ahmedabad, Gujarat, India',
-      period: '2019 - 2020',
-      status: 'Completed',
-      board: 'ICSE',
-      description: 'Completed foundational education with emphasis on core subjects.',
-      gpa: '97%'
+      {
+        degree: 'Bachelor of Technology in Artificial Intelligence',
+        institution: 'National Institute of Technology (NIT) Surat',
+        location: 'Surat, Gujarat, India',
+        period: '2022 - 2026',
+        currentYear: 'Third Year',
+        gpa: '7.66/10.0',
+        status: 'Currently Pursuing',
+        description: 'Specializing in machine learning, deep learning, computer vision, and natural language processing with strong foundations in mathematics and programming.',
+        skills: [
+          'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV',
+          'Pandas', 'NumPy', 'Matplotlib', 'SQL', 'Git', 'Docker'
+        ]
+      },
+      {
+        degree: 'Higher Secondary Education (Class XII)',
+        institution: 'Satyameva Jayate International School',
+        location: 'Ahmedabad, Gujarat, India',
+        period: '2022 - 2023',
+        status: 'Completed',
+        board: 'CBSE',
+        description: 'Science stream with focus on Mathematics, Physics, and Chemistry.',
+        gpa: '87%'
+      },
+      {
+        degree: 'Secondary Education (Class X)',
+        institution: 'Zydus School for Excellence',
+        location: 'Ahmedabad, Gujarat, India',
+        period: '2019 - 2020',
+        status: 'Completed',
+        board: 'ICSE',
+        description: 'Completed foundational education with emphasis on core subjects.',
+        gpa: '97%'
 
-    }
-  ];
+      }
+    ];
 
-  
 
-  
+
+
 
   return (
     <section id="education" className="section-padding bg-white relative overflow-hidden">
@@ -61,7 +61,7 @@ const Education = () => {
         <div className="absolute top-1/4 left-20 w-32 h-32 bg-blue-50 rounded-full opacity-40 animate-float-3d transform-3d"></div>
         <div className="absolute bottom-1/3 right-20 w-24 h-24 bg-teal-50 rounded-full opacity-50 animate-float-delayed transform-3d"></div>
       </div>
-      
+
       <div className="container-responsive relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
@@ -74,8 +74,8 @@ const Education = () => {
         <div className="max-w-6xl mx-auto">
           {/* Main Education Card */}
           {education.map((edu, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="card-interactive p-6 sm:p-8 mb-8 sm:mb-12 hover-card-3d transform-3d animate-scale-in will-change-transform"
               style={{ animationDelay: `${400 + index * 200}ms` }}
             >
@@ -93,7 +93,7 @@ const Education = () => {
                           <p className="text-base sm:text-lg text-blue-600 font-semibold">{edu.institution}</p>
                         </div>
                       </div>
-                      
+
                       <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 text-gray-600">
                         <div className="flex items-center space-x-1 hover-lift transform-3d">
                           <Calendar size={14} />
@@ -132,22 +132,22 @@ const Education = () => {
                         {edu.currentYear && (
                           <p className="text-sm sm:text-base text-gray-600">Year: <span className="font-medium text-gray-900">{edu.currentYear}</span></p>
                         )}
-                        <p className="text-sm sm:text-base text-gray-600">CGPA: <span className="font-medium text-blue-600 hover-lift transform-3d transition-all duration-300">{edu.gpa}</span></p>
+                        <p className="text-sm sm:text-base text-gray-600">{edu.currentYear ? 'CGPA' : 'Grade'}: <span className="font-medium text-blue-600 hover-lift transform-3d transition-all duration-300">{edu.gpa}</span></p>
                       </div>
                     </div>
 
-                    
+
                   </div>
                 </div>
 
                 {/* Right Column - Skills & Quick Stats */}
               </div>
 
-              
+
             </div>
           ))}
 
-          
+
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ const Experience = () => {
     {
       title: 'Technical Lead',
       company: 'Nexus Cell SVNIT',
+      logo: '/logos/nexus.png',
       location: 'Surat, Gujarat, India',
       period: 'July 2025 – Present',
       type: 'Campus Leadership',
@@ -20,6 +21,7 @@ const Experience = () => {
     {
       title: 'AI/ML Lead',
       company: 'GDGC NIT Surat',
+      logo: '/logos/gdgc.png',
       location: 'Surat, Gujarat, India',
       period: 'August 2024 – Present',
       type: 'Campus Leadership',
@@ -33,6 +35,7 @@ const Experience = () => {
     {
       title: 'AI ML Intern',
       company: 'Accenture',
+      logo: '/logos/accenture.png',
       location: 'Remote',
       period: 'May 2025 – July 2025',
       type: 'Internship',
@@ -92,25 +95,40 @@ const Experience = () => {
 
                   {/* Content with 3D card effects */}
                   <div className={`bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 ml-12 lg:ml-0 animate-slide-in-${index % 2 === 0 ? 'right' : 'left'} will-change-transform ${index % 2 === 0
-                      ? 'lg:mr-8 lg:ml-0 lg:w-5/12'
-                      : 'lg:ml-8 lg:mr-0 lg:w-5/12'
+                    ? 'lg:mr-8 lg:ml-0 lg:w-5/12'
+                    : 'lg:ml-8 lg:mr-0 lg:w-5/12'
                     } hover:shadow-2xl transition-all duration-500 hover-card-3d transform-3d`}
                     style={{ animationDelay: `${400 + index * 200}ms` }}>
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-2 sm:space-y-0">
-                      <div>
+
+                    {/* Header with Logo and Title */}
+                    <div className="flex items-start gap-4 mb-4">
+                      {/* Company Logo */}
+                      <div className="flex-shrink-0">
+                        {exp.logo ? (
+                          <img
+                            src={exp.logo}
+                            alt={`${exp.company} logo`}
+                            className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-lg shadow-md border border-gray-200 bg-white p-1"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-teal-500 rounded-lg flex items-center justify-center shadow-md">
+                            <Briefcase size={24} className="text-white" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Title and Company */}
+                      <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h3 className="text-lg sm:text-xl font-bold text-gray-900 will-change-transform">{exp.title}</h3>
-                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${exp.type === 'Internship'
-                              ? 'bg-purple-100 text-purple-700'
-                              : 'bg-emerald-100 text-emerald-700'
+                          <h3 className="text-lg sm:text-xl font-bold text-gray-900">{exp.title}</h3>
+                          <span className={`px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap ${exp.type === 'Internship'
+                            ? 'bg-purple-100 text-purple-700'
+                            : 'bg-emerald-100 text-emerald-700'
                             }`}>
                             {exp.type}
                           </span>
                         </div>
                         <p className="text-base sm:text-lg text-blue-600 font-semibold">{exp.company}</p>
-                      </div>
-                      <div className="p-2 bg-blue-50 rounded-lg hover-icon-3d transform-3d self-start">
-                        <Briefcase size={18} className="text-blue-600 icon-interactive" />
                       </div>
                     </div>
 
