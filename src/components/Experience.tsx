@@ -5,6 +5,21 @@ const Experience = () => {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const experiences = [
     {
+      title: 'AI ML Intern',
+      company: 'Accenture',
+      logo: '/logos/accenture.png',
+      location: 'Remote',
+      period: 'May 2025 – July 2025',
+      type: 'Internship',
+      description: 'Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.',
+      achievements: [
+        'Coordinated with the team to develop chatbots and agents for Bank of Baroda\'s web application',
+        'Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n',
+        'Integrated generative AI workflows to streamline development of conversational agents'
+      ],
+      technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI']
+    },
+    {
       title: 'Technical Lead',
       company: 'Nexus Cell SVNIT',
       logo: '/logos/nexus.png',
@@ -23,7 +38,7 @@ const Experience = () => {
       company: 'GDGC NIT Surat',
       logo: '/logos/gdgc.png',
       location: 'Surat, Gujarat, India',
-      period: 'August 2024 – Present',
+      period: 'September 2025 – Present',
       type: 'Campus Leadership',
       description: 'Leading AI/ML initiatives at Google Developer Groups on Campus NIT Surat, organizing workshops, conducting sessions, and guiding students in machine learning and artificial intelligence.',
       achievements: [
@@ -31,21 +46,6 @@ const Experience = () => {
         'Mentored team members in machine learning, deep learning, and AI technologies',
         'Collaborated with Google Developer Student Clubs to promote AI/ML education on campus'
       ]
-    },
-    {
-      title: 'AI ML Intern',
-      company: 'Accenture',
-      logo: '/logos/accenture.png',
-      location: 'Remote',
-      period: 'May 2025 – July 2025',
-      type: 'Internship',
-      description: 'Contributed to building AI chatbots and agents for a Bank of Baroda web application and integrated GenAI workflows into banking solutions.',
-      achievements: [
-        'Coordinated with the team to develop chatbots and agents for Bank of Baroda\'s web application',
-        'Learned and applied GenAI frameworks: LangChain, LangGraph, MCP, CrewAI, and n8n',
-        'Integrated generative AI workflows to streamline development of conversational agents'
-      ],
-      technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI']
     }
   ];
 

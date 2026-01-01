@@ -41,6 +41,10 @@ const Hero = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToProjects = () => {
+    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden dark:bg-gray-900">
       {/* Simple background with original gradient */}
@@ -84,7 +88,7 @@ const Hero = () => {
                   <span>Download</span>
                 </a>
                 <button
-                  onClick={scrollToAbout}
+                  onClick={scrollToProjects}
                   className="btn-secondary ripple hover-button-3d transform-3d"
                 >
                   View My Work
