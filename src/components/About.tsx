@@ -1,5 +1,3 @@
-import { } from 'react';
-
 const About = () => {
   return (
     <section id="about" className="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">

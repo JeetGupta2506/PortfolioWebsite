@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import ProjectModal from './ProjectModal';
+import ProjectModal, { type Project } from './ProjectModal';
 import { ExternalLink, Github, Eye } from 'lucide-react';
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState(null as any);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories = ['All', 'Machine Learning', 'Web Development', 'Data Science', 'AI/GenAI'];
 
@@ -98,6 +98,15 @@ const Projects = () => {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedProject(project);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`View details for ${project.title}`}
               className="card-interactive group ripple hover-card-3d transform-3d animate-scale-in will-change-transform cursor-pointer"
               style={{ animationDelay: `${500 + index * 150}ms` }}
             >
@@ -115,9 +124,11 @@ const Projects = () => {
                   <a href={project.github} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
                     <Github size={16} className="text-gray-700 icon-interactive" />
                   </a>
-                  <a href={project.live} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
-                    <ExternalLink size={16} className="text-gray-700 icon-interactive" />
-                  </a>
+                  {project.live && project.live !== '#' && (
+                    <a href={project.live} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
+                      <ExternalLink size={16} className="text-gray-700 icon-interactive" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -153,15 +164,17 @@ const Projects = () => {
                     <Github size={14} />
                     <span>Code</span>
                   </a>
-                  <a
-                    href={project.live}
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank" rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
-                  >
-                    <Eye size={14} />
-                    <span>Live</span>
-                  </a>
+                  {project.live && project.live !== '#' && (
+                    <a
+                      href={project.live}
+                      onClick={(e) => e.stopPropagation()}
+                      target="_blank" rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
+                    >
+                      <Eye size={14} />
+                      <span>Live</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -174,9 +187,15 @@ const Projects = () => {
 
         {/* View All Projects Button */}
         <div className="text-center animate-fade-in-up animation-delay-1000">
-          <button className="btn-primary ripple hover-button-3d transform-3d">
-            View All Projects
-          </button>
+          <a
+            href="https://github.com/JeetGupta2506"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2 ripple hover-button-3d transform-3d"
+          >
+            <Github size={18} />
+            View All Projects on GitHub
+          </a>
         </div>
       </div>
     </section>

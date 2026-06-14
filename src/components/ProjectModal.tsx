@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { X, Github, ExternalLink } from 'lucide-react';
 
-type Project = {
+export type Project = {
   id: number;
   title: string;
   description: string;
@@ -57,8 +57,8 @@ export default function ProjectModal({ project, onClose }: { project: Project; o
       }
     };
 
-    root.addEventListener('keydown', handleKey as any);
-    return () => root.removeEventListener('keydown', handleKey as any);
+    root.addEventListener('keydown', handleKey);
+    return () => root.removeEventListener('keydown', handleKey);
   }, []);
 
   if (!project) return null;
@@ -139,16 +139,18 @@ export default function ProjectModal({ project, onClose }: { project: Project; o
                   <Github size={18} />
                   <span>View Code</span>
                 </a>
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105"
-                >
-                  <ExternalLink size={18} />
-                  <span>Live Demo</span>
-                </a>
+                {project.live && project.live !== '#' && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105"
+                  >
+                    <ExternalLink size={18} />
+                    <span>Live Demo</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

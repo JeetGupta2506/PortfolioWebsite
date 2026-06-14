@@ -2,13 +2,13 @@ import { ChevronDown, Download, Eye, Github, Linkedin, Mail } from 'lucide-react
 import { useState, useEffect } from 'react';
 import ResumeModal from './ResumeModal';
 
+const roles = ['Data Scientist', 'ML Engineer', 'GenAI Engineer'];
+
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-
-  const roles = ['Data Scientist', 'ML Engineer', 'GenAI Engineer'];
 
   useEffect(() => {
     const currentRoleText = roles[currentRole];
@@ -35,7 +35,7 @@ const Hero = () => {
     }, isDeleting ? 50 : 80); // Reduced from 100ms to 50ms for deleting, 150ms to 80ms for typing
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole, roles]);
+  }, [displayText, isDeleting, currentRole]);
 
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });

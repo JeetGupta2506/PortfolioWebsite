@@ -4,14 +4,20 @@ const ScrollProgress = () => {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {
+        let ticking = false;
         const updateScrollProgress = () => {
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = window.scrollY;
-            const progress = (scrolled / scrollHeight) * 100;
-            setScrollProgress(progress);
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrolled = window.scrollY;
+                const progress = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0;
+                setScrollProgress(progress);
+                ticking = false;
+            });
         };
 
-        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
         updateScrollProgress(); // Initial calculation
 
         return () => window.removeEventListener('scroll', updateScrollProgress);

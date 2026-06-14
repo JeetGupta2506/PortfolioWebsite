@@ -2,20 +2,26 @@ import { useState, useEffect } from 'react';
 
 const LoadingScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isExiting, setIsExiting] = useState(false);
 
     useEffect(() => {
-        // Simulate loading time
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1500);
+        // Hold the splash briefly, then play the exit fade before unmounting
+        const exitTimer = setTimeout(() => setIsExiting(true), 1500);
+        const unmountTimer = setTimeout(() => setIsLoading(false), 2000);
 
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(exitTimer);
+            clearTimeout(unmountTimer);
+        };
     }, []);
 
     if (!isLoading) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center animate-fade-out">
+        <div
+            className={`fixed inset-0 z-[100] bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
+            aria-hidden="true"
+        >
             <div className="text-center">
                 {/* Logo/Initials */}
                 <div className="mb-8 animate-bounce-in">

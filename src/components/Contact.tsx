@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -11,6 +11,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [honeypot, setHoneypot] = useState('');
 
   const contactInfo = [
     {
@@ -36,23 +37,16 @@ const Contact = () => {
     }
   ];
 
-  const socialLinks = [
-    {
-      icon: Github,
-      name: 'GitHub',
-      url: 'https://github.com/JeetGupta2506',
-      accentColor: 'blue'
-    },
-    {
-      icon: Linkedin,
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/jeet-gupta-559099295',
-      accentColor: 'blue'
-    }
-  ];
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Honeypot: real users never fill this hidden field; bots do.
+    if (honeypot) {
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
@@ -137,6 +131,17 @@ const Contact = () => {
             )}
 
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field — hidden from users, catches spam bots */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                aria-hidden="true"
+              />
               <div className="form-group">
                 <label htmlFor="name" className="form-label text-sm sm:text-base">Name</label>
                 <input

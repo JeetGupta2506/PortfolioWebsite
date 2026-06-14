@@ -64,9 +64,6 @@ const Experience = () => {
     }
   ];
 
-  // LinkedIn link for use in social/profile links
-  const linkedInUrl = 'https://www.linkedin.com/in/jeet-gupta-559099295';
-
   return (
     <section id="experience" className="section-padding bg-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -195,6 +192,12 @@ const Experience = () => {
                       alt={`${cert.name} certificate`}
                       className="w-full h-32 sm:h-40 object-cover rounded-lg mb-4 border border-gray-200 cursor-zoom-in hover:scale-105 transition-transform duration-300 will-change-transform"
                       onClick={() => setPreview({ src: cert.image as string, alt: `${cert.name} certificate` })}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setPreview({ src: cert.image as string, alt: `${cert.name} certificate` });
+                        }
+                      }}
                       role="button"
                       tabIndex={0}
                     />

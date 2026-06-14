@@ -6,7 +6,7 @@ const Footer = () => {
   const socialLinks = [
     { name: 'GitHub', icon: Github, url: 'https://github.com/JeetGupta2506' },
     { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/in/jeet-gupta-559099295' },
-    { name: 'Email', icon: Mail, url: 'mailto:jeetgupta2506@gmail.com' }
+    { name: 'Email', icon: Mail, url: 'mailto:guptajeet2506@gmail.com' }
   ];
 
   return (
