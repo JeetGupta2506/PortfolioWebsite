@@ -1,164 +1,155 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Burger, Close, Moon, Sun } from './icons';
+import { scrollToSection, useActiveSection, useScrollMetrics } from '../hooks/useScrollChrome';
+import type { Theme } from '../hooks/useTheme';
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+const NAV = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'education', label: 'Education' },
+  { id: 'certifications', label: 'Certifications' },
+] as const;
+
+const SECTION_IDS = [
+  'home', 'about', 'experience', 'projects', 'skills', 'education', 'certifications', 'contact',
+] as const;
+
+type HeaderProps = {
+  theme: Theme;
+  toggleTheme: () => void;
+};
+
+const Header = ({ theme, toggleTheme }: HeaderProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { scrollY } = useScrollMetrics();
+  const active = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 20);
-        ticking = false;
-      });
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    setIsMenuOpen(false);
+  const go = (id: string) => {
+    setMenuOpen(false);
+    scrollToSection(id);
   };
+
+  const goHome = () => {
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const themeToggle = (className: string) => (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label="Toggle dark mode"
+      title="Toggle dark mode"
+      data-btn=""
+      className={`flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-xl border border-line bg-surface text-muted ${className}`}
+    >
+      {theme === 'dark' ? <Moon size={18} /> : <Sun size={18} />}
+    </button>
+  );
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? 'bg-white shadow-md'
-        : 'bg-white/95 backdrop-blur-sm'
-        }`}
+      className="sticky top-0 z-50 border-b border-line bg-paper transition-shadow duration-[400ms]"
+      style={{ boxShadow: scrollY > 16 ? 'var(--shadow-lg)' : 'none' }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="mx-auto flex max-w-[80rem] items-center justify-between gap-6 px-6 py-[14px]">
+        <button
+          type="button"
+          onClick={goHome}
+          aria-label="Back to top"
+          className="flex items-center gap-3 border-0 bg-transparent p-0 font-[inherit]"
+        >
+          <span className="grad-fill-135 flex h-[38px] w-[38px] items-center justify-center rounded-xl text-[.92rem] font-bold text-white">
+            JG
+          </span>
+          <span className="text-left">
+            <span className="block text-base font-bold text-ink">Jeet Gupta</span>
+            <span className="mt-px block text-[.72rem] font-medium uppercase tracking-[.06em] text-muted">
+              AI / ML Engineer
+            </span>
+          </span>
+        </button>
+
+        {/* Mobile: the design ships only a burger here; the theme control is kept
+            reachable on small screens rather than being desktop-only. */}
+        <div className="flex items-center gap-2 nav:hidden">
+          {themeToggle('')}
           <button
-            onClick={() => scrollToSection('home')}
-            className="group"
-            aria-label="Home"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-xl border border-line bg-transparent text-ink"
           >
-            <div className="flex items-center gap-3">
-              <img
-                src="/favicon.png"
-                alt="Jeet Gupta Logo"
-                className="w-10 h-10 rounded-full object-cover shadow-lg group-hover:shadow-xl transition-shadow"
-              />
-              <div className="hidden sm:block">
-                <div className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                  Jeet Gupta
-                </div>
-                <div className="text-xs text-gray-600">AI/ML Engineer</div>
-              </div>
-            </div>
-          </button>
-
-          <nav className="hidden lg:flex items-center gap-1">
-            {['about', 'skills', 'education', 'projects', 'experience', 'contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all capitalize"
-              >
-                {section}
-              </button>
-            ))}
-          </nav>
-
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://github.com/JeetGupta2506"
-              aria-label="GitHub"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/jeet-gupta-559099295"
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
-            >
-              <Linkedin size={20} />
-            </a>
-            <div className="w-px h-6 bg-gray-300 mx-1"></div>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 shadow-md hover:shadow-lg transition-all"
-            >
-              <Mail size={18} />
-              Let's Talk
-            </button>
-          </div>
-
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2.5 text-gray-700 hover:bg-gray-100 rounded-lg transition-all"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <Close size={20} /> : <Burger size={20} />}
           </button>
         </div>
 
-        {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-6 animate-in slide-in-from-top duration-200">
-            <nav className="flex flex-col gap-2">
-              {['about', 'skills', 'education', 'projects', 'experience', 'contact'].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className="text-left px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all capitalize font-medium"
-                >
-                  {section}
-                </button>
-              ))}
-
-              <div className="flex items-center gap-3 pt-6 mt-4 border-t border-gray-200">
-                <a
-                  href="https://github.com/JeetGupta2506"
-                  aria-label="GitHub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 p-3 text-gray-700 hover:text-gray-900 border border-gray-300 hover:bg-gray-50 rounded-lg transition-all"
-                >
-                  <Github size={20} />
-                  <span className="text-sm font-medium">GitHub</span>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/jeet-gupta-559099295"
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 p-3 text-gray-700 hover:text-gray-900 border border-gray-300 hover:bg-gray-50 rounded-lg transition-all"
-                >
-                  <Linkedin size={20} />
-                  <span className="text-sm font-medium">LinkedIn</span>
-                </a>
-              </div>
+        <nav aria-label="Primary" className="hidden items-center gap-[2px] nav:flex">
+          {NAV.map((item) => {
+            const on = active === item.id;
+            return (
               <button
-                onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md transition-all mt-2"
+                key={item.id}
+                type="button"
+                onClick={() => go(item.id)}
+                aria-current={on ? 'true' : undefined}
+                className={`rounded-xl px-[13px] py-2 text-[.92rem] font-medium transition-colors hover:bg-chip hover:text-accent ${
+                  on ? 'bg-chip text-accent dark:text-accent-ink' : 'bg-transparent text-muted'
+                }`}
               >
-                <Mail size={18} />
-                Let's Talk
+                {item.label}
               </button>
-            </nav>
-          </div>
-        )}
+            );
+          })}
+
+          {themeToggle('ml-2.5')}
+
+          <button
+            type="button"
+            onClick={() => go('contact')}
+            data-btn=""
+            className="grad-fill ml-2 rounded-xl px-5 py-2.5 text-[.92rem] font-semibold text-white shadow-md"
+          >
+            Hire me
+          </button>
+        </nav>
       </div>
+
+      {menuOpen && (
+        <div className="border-t border-line bg-paper px-6 pb-[18px] pt-2.5 nav:hidden">
+          <div className="flex flex-col gap-[2px]">
+            {NAV.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => go(item.id)}
+                className="rounded-xl px-3 py-[13px] text-left text-base font-medium text-ink hover:bg-chip"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => go('contact')}
+              className="grad-fill mt-2 rounded-xl px-3 py-3.5 text-center text-base font-semibold text-white"
+            >
+              Get in touch
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

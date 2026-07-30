@@ -1,15 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
+/**
+ * Brief splash. The design source is a page, not an app shell, so this keeps the
+ * existing behaviour and simply adopts the blue/teal tokens and JG monogram.
+ */
 const LoadingScreen = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isExiting, setIsExiting] = useState(false);
+    const [filled, setFilled] = useState(false);
 
     useEffect(() => {
-        // Hold the splash briefly, then play the exit fade before unmounting
-        const exitTimer = setTimeout(() => setIsExiting(true), 1500);
-        const unmountTimer = setTimeout(() => setIsLoading(false), 2000);
+        const start = requestAnimationFrame(() => setFilled(true));
+        const exitTimer = setTimeout(() => setIsExiting(true), 1400);
+        const unmountTimer = setTimeout(() => setIsLoading(false), 1900);
 
         return () => {
+            cancelAnimationFrame(start);
             clearTimeout(exitTimer);
             clearTimeout(unmountTimer);
         };
@@ -19,25 +25,25 @@ const LoadingScreen = () => {
 
     return (
         <div
-            className={`fixed inset-0 z-[100] bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center transition-opacity duration-500 ${isExiting ? 'opacity-0' : 'opacity-100'}`}
             aria-hidden="true"
+            className={`fixed inset-0 z-[90] flex items-center justify-center bg-paper transition-opacity duration-500 ${
+                isExiting ? 'opacity-0' : 'opacity-100'
+            }`}
         >
             <div className="text-center">
-                {/* Logo/Initials */}
-                <div className="mb-8 animate-bounce-in">
-                    <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-600 to-teal-600 flex items-center justify-center shadow-2xl shadow-blue-500/50">
-                        <span className="text-white font-bold text-4xl">JG</span>
-                    </div>
+                <div className="grad-fill-135 mx-auto flex h-24 w-24 items-center justify-center rounded-2xl shadow-xl">
+                    <span className="text-4xl font-bold text-white">JG</span>
                 </div>
 
-                {/* Loading Text */}
-                <h2 className="text-2xl font-bold text-white mb-4 animate-fade-in-up">
-                    Loading Portfolio
-                </h2>
+                <p className="mt-6 text-[.72rem] font-semibold uppercase tracking-[.14em] text-faint">
+                    Loading portfolio
+                </p>
 
-                {/* Loading Bar */}
-                <div className="w-64 h-1 bg-gray-700 rounded-full overflow-hidden mx-auto">
-                    <div className="h-full bg-gradient-to-r from-blue-600 to-teal-600 animate-expand"></div>
+                <div className="mx-auto mt-5 h-1 w-64 overflow-hidden rounded-full bg-chip">
+                    <div
+                        className="grad-fill h-full w-full origin-left transition-transform duration-1000 ease-dc"
+                        style={{ transform: `scaleX(${filled ? 1 : 0.04})` }}
+                    />
                 </div>
             </div>
         </div>

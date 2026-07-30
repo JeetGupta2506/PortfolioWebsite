@@ -1,205 +1,137 @@
-import { useState } from 'react';
-import ProjectModal, { type Project } from './ProjectModal';
-import { ExternalLink, Github, Eye } from 'lucide-react';
+import Reveal from './Reveal';
+import SectionHeading from './SectionHeading';
 
-const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+type Project = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  technologies: string[];
+  github: string;
+  live?: string;
+};
 
-  const categories = ['All', 'Machine Learning', 'Web Development', 'Data Science', 'AI/GenAI'];
+const PROJECTS: Project[] = [
+  {
+    eyebrow: 'Full-stack · ML',
+    title: 'MLXplore — Interactive ML Experimentation Platform',
+    description:
+      'Full-stack platform to explore, train and visualize ML models across classification, regression and clustering — dataset preview, algorithm playgrounds, model training and hyperparameter tuning.',
+    image: '/MLXplore.png',
+    alt: 'MLXplore',
+    technologies: ['React', 'Material-UI', 'TypeScript', 'FastAPI', 'Python', 'scikit-learn', 'pandas'],
+    github: 'https://github.com/JeetGupta2506/MLXplore',
+    live: 'https://ml-xplore-omega.vercel.app/',
+  },
+  {
+    eyebrow: 'Machine learning',
+    title: 'Movie Recommendation System (Bollywood)',
+    description:
+      'Web-scraped a custom Bollywood movies dataset, then implemented collaborative and content-based recommendation with interactive filtering.',
+    image: '/MovieRecommendation.png',
+    alt: 'Movie Recommendation System',
+    technologies: ['Python', 'Streamlit', 'BeautifulSoup', 'scikit-learn', 'pandas'],
+    github: 'https://github.com/JeetGupta2506/Movie-Recommendation-System',
+    live: 'https://movierecommendationbollywood.streamlit.app/',
+  },
+  {
+    eyebrow: 'Deep learning',
+    title: 'Multi-Disease Classifier',
+    description:
+      'Predicts diabetes, asthma, blood pressure and typhoid from symptoms and demographic data — dedicated input forms, pre-trained models and the optimal algorithm per disease.',
+    image: '/Medical-Classifier.png',
+    alt: 'Multi-Disease Classifier',
+    technologies: ['Python', 'TensorFlow', 'Keras', 'Scikit-learn', 'Pandas', 'Streamlit'],
+    github: 'https://github.com/JeetGupta2506/Multi-Disease-Prediction',
+    live: 'https://multi-disease-prediction-p55veox274sezpbejfkl8b.streamlit.app/',
+  },
+  {
+    eyebrow: 'GenAI · RAG',
+    title: 'Multi-Document Embedding Search Engine with Caching',
+    description:
+      'Semantic search across multiple documents using embeddings, with intelligent caching for retrieval performance and similarity matching.',
+    image: '/RAG.png',
+    alt: 'Embedding search engine',
+    technologies: ['Python', 'Sentence-Transformers', 'FAISS', 'Redis', 'Flask'],
+    github: 'https://github.com/JeetGupta2506/Multi-document-Embedding-Search-Engine-with-Caching',
+  },
+];
 
-  const projects = [
-    {
-      id: 1,
-      title: 'MLXplore — Interactive ML Experimentation Platform',
-      description: 'Full-stack platform to explore, train, and visualize machine learning models (classification, regression, clustering). Features dataset preview, interactive algorithm playgrounds, model training, visualization of results, and hyperparameter tuning.',
-      image: '/MLXplore.png',
-      technologies: ['React', 'Material-UI', 'TypeScript', 'FastAPI', 'Python', 'scikit-learn', 'pandas'],
-      github: 'https://github.com/JeetGupta2506/MLXplore',
-      live: 'https://ml-xplore-omega.vercel.app/',
-      category: 'Machine Learning',
-      accentColor: 'blue'
-    },
-    {
-      id: 2,
-      title: 'Movie Recommendation System (Bollywood)',
-      description: 'A movie recommendation system built with Streamlit. I web-scraped a custom Bollywood movies dataset and implemented collaborative & content-based recommendation techniques with interactive filtering in the UI.',
-      image: '/MovieRecommendation.png',
-      technologies: ['Python', 'Streamlit', 'BeautifulSoup', 'scikit-learn', 'pandas'],
-      github: 'https://github.com/JeetGupta2506/Movie-Recommendation-System',
-      live: 'https://movierecommendationbollywood.streamlit.app/',
-      category: 'Machine Learning',
-      accentColor: 'blue'
-    },
-    {
-      id: 3,
-      title: 'Multi-Disease Classifier',
-      description: 'ML-based web app that predicts multiple diseases (Diabetes, Asthma, Blood Pressure, Typhoid) from symptoms and demographic data. Features user-friendly Streamlit interface, dedicated input forms, pre-trained models, and modular architecture using optimal algorithms for each disease.',
-      image: '/Medical-Classifier.png',
-      technologies: ['Python', 'TensorFlow', 'Keras', 'Scikit-learn', 'Pandas', 'Streamlit'],
-      github: 'https://github.com/JeetGupta2506/Multi-Disease-Prediction',
-      live: 'https://multi-disease-prediction-p55veox274sezpbejfkl8b.streamlit.app/',
-      category: 'Machine Learning',
-      accentColor: 'blue'
-    },
-    {
-      id: 4,
-      title: 'Multi-Document Embedding Search Engine with Caching',
-      description: 'A semantic search engine that uses embeddings to search across multiple documents with intelligent caching for improved performance. Enables efficient document retrieval and similarity matching.',
-      image: '/RAG.png',
-      technologies: ['Python', 'Sentence-Transformers', 'FAISS', 'Redis', 'Flask'],
-      github: 'https://github.com/JeetGupta2506/Multi-document-Embedding-Search-Engine-with-Caching',
-      live: '#',
-      category: 'AI/GenAI',
-      accentColor: 'blue'
-    }
-  ];
+const Projects = () => (
+  <section id="projects" className="band bg-paper">
+    <div className="shell">
+      <SectionHeading title="Featured Projects" />
 
-  const filteredProjects = selectedCategory === 'All'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
-
-  return (
-    <section id="projects" className="section-padding bg-gradient-to-br from-blue-50 via-white to-teal-50 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-20 w-40 h-40 bg-teal-100 rounded-full opacity-20 animate-float-3d transform-3d"></div>
-        <div className="absolute bottom-1/3 left-20 w-28 h-28 bg-blue-100 rounded-full opacity-25 animate-float-delayed transform-3d"></div>
-      </div>
-
-      <div className="container-responsive relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-          <h2 className="text-responsive-lg font-bold text-gray-900 mb-6 will-change-transform">
-            Featured Projects
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full animate-expand animation-delay-300"></div>
-        </div>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up animation-delay-400">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${selectedCategory === category
-                  ? 'bg-gradient-to-r from-blue-600 to-teal-600 text-white shadow-lg shadow-blue-500/30'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md'
-                }`}
+      <div className="mx-auto grid max-w-[66rem] grid-cols-1 gap-5 card:grid-cols-2 card:gap-6">
+        {PROJECTS.map((project, i) => (
+          <Reveal key={project.title} delay={i * 60} className="h-full">
+            <article
+              data-card=""
+              className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-lg"
             >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid-responsive-cards mb-8 sm:mb-12">
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              onClick={() => setSelectedProject(project)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setSelectedProject(project);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`View details for ${project.title}`}
-              className="card-interactive group ripple hover-card-3d transform-3d animate-scale-in will-change-transform cursor-pointer"
-              style={{ animationDelay: `${500 + index * 150}ms` }}
-            >
-              {/* Project Image */}
-              <div className="relative overflow-hidden rounded-t-xl">
+              <div className="overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
-                  className="w-full h-40 sm:h-48 object-cover transition-transform duration-700 group-hover:scale-125 will-change-transform"
+                  alt={project.alt}
+                  loading="lazy"
+                  data-zoom=""
+                  className="block h-48 w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                {/* Action Buttons */}
-                <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <a href={project.github} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
-                    <Github size={16} className="text-gray-700 icon-interactive" />
-                  </a>
-                  {project.live && project.live !== '#' && (
-                    <a href={project.live} onClick={(e) => e.stopPropagation()} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/90 rounded-lg hover:bg-white transition-all duration-300 ripple hover-lift transform-3d">
-                      <ExternalLink size={16} className="text-gray-700 icon-interactive" />
-                    </a>
-                  )}
-                </div>
               </div>
 
-              {/* Project Content */}
-              <div className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 will-change-transform">
+              <div className="flex flex-1 flex-col p-[26px]">
+                <span className="text-[.72rem] font-bold uppercase tracking-[.1em] text-accent">
+                  {project.eyebrow}
+                </span>
+                <h3 className="mt-2.5 text-[1.15rem] font-bold leading-[1.3] text-ink">
                   {project.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                <p className="mt-[11px] text-[.92rem] leading-[1.7] text-muted">
                   {project.description}
                 </p>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1 sm:gap-2 mb-6">
-                  {project.technologies.map((tech, techIndex) => (
+                <div className="mt-3.5 flex flex-wrap gap-1.5">
+                  {project.technologies.map((tech) => (
                     <span
-                      key={techIndex}
-                      className="tag-interactive hover-tilt transform-3d text-xs sm:text-sm"
+                      key={tech}
+                      data-chip=""
+                      className="rounded-full bg-chip px-[11px] py-1 text-[.72rem] font-medium text-muted"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Project Links */}
-                <div className="flex space-x-2 sm:space-x-3">
-                  <a
-                    href={project.github}
-                    onClick={(e) => e.stopPropagation()}
-                    target="_blank" rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
-                  >
-                    <Github size={14} />
-                    <span>Code</span>
-                  </a>
-                  {project.live && project.live !== '#' && (
+                <div className="mt-auto flex gap-[9px] pt-[18px]">
+                  {project.live && (
                     <a
                       href={project.live}
-                      onClick={(e) => e.stopPropagation()}
-                      target="_blank" rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-3 sm:px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 link-interactive hover-button-3d transform-3d text-sm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-btn=""
+                      className="grad-fill rounded-xl px-[15px] py-2 text-[.82rem] font-semibold text-white"
                     >
-                      <Eye size={14} />
-                      <span>Live</span>
+                      Live demo
                     </a>
                   )}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-btn=""
+                    className="rounded-xl bg-chip px-[15px] py-2 text-[.82rem] font-semibold text-muted"
+                  >
+                    {project.live ? 'Code' : 'View code'}
+                  </a>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-        )}
-
-        {/* View All Projects Button */}
-        <div className="text-center animate-fade-in-up animation-delay-1000">
-          <a
-            href="https://github.com/JeetGupta2506"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 ripple hover-button-3d transform-3d"
-          >
-            <Github size={18} />
-            View All Projects on GitHub
-          </a>
-        </div>
+            </article>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Projects;

@@ -1,43 +1,24 @@
-import { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp } from './icons';
+import { useScrollMetrics } from '../hooks/useScrollChrome';
 
 const BackToTop = () => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        let ticking = false;
-        const toggleVisibility = () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                setIsVisible(window.scrollY > 300);
-                ticking = false;
-            });
-        };
-
-        window.addEventListener('scroll', toggleVisibility, { passive: true });
-        return () => window.removeEventListener('scroll', toggleVisibility);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
+    const { scrollY } = useScrollMetrics();
+    const visible = scrollY > 420;
 
     return (
-        <>
-            {isVisible && (
-                <button
-                    onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-40 p-4 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:scale-110 active:scale-95 animate-fade-in-up group"
-                    aria-label="Back to top"
-                >
-                    <ArrowUp size={24} className="group-hover:animate-bounce" />
-                </button>
-            )}
-        </>
+        <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+            aria-hidden={!visible}
+            tabIndex={visible ? 0 : -1}
+            data-btn=""
+            className={`grad-fill fixed bottom-7 right-7 z-40 flex h-[50px] w-[50px] items-center justify-center rounded-full text-white shadow-xl transition-[opacity,transform] duration-[400ms] ${
+                visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0'
+            }`}
+        >
+            <ArrowUp size={22} />
+        </button>
     );
 };
 

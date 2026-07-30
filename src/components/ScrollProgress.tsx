@@ -1,33 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useScrollMetrics } from '../hooks/useScrollChrome';
 
+/** 3px rail across the top edge, filled via scaleX so no layout is triggered. */
 const ScrollProgress = () => {
-    const [scrollProgress, setScrollProgress] = useState(0);
-
-    useEffect(() => {
-        let ticking = false;
-        const updateScrollProgress = () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(() => {
-                const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = window.scrollY;
-                const progress = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0;
-                setScrollProgress(progress);
-                ticking = false;
-            });
-        };
-
-        window.addEventListener('scroll', updateScrollProgress, { passive: true });
-        updateScrollProgress(); // Initial calculation
-
-        return () => window.removeEventListener('scroll', updateScrollProgress);
-    }, []);
+    const { progress } = useScrollMetrics();
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-[60] h-1.5 bg-gray-200 dark:bg-gray-800">
+        <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-x-0 top-0 z-[70] h-[3px]"
+        >
             <div
-                className="h-full bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 transition-all duration-150 ease-out shadow-lg shadow-blue-500/50"
-                style={{ width: `${scrollProgress}%` }}
+                className="grad-fill h-full w-full origin-left"
+                style={{ transform: `scaleX(${progress})` }}
             />
         </div>
     );

@@ -1,157 +1,111 @@
-import { GraduationCap, Calendar, MapPin, BookOpen } from 'lucide-react';
+import Reveal from './Reveal';
+import SectionHeading from './SectionHeading';
 
-const Education = () => {
-  const education: Array<{
-    degree: string;
-    institution: string;
-    location: string;
-    period: string;
-    status: string;
-    gpa: string;
-    currentYear?: string;
-    description?: string;
-    board?: string;
-    skills?: string[];
-  }> = [
-      {
-        degree: 'Bachelor of Technology in Artificial Intelligence',
-        institution: 'National Institute of Technology (NIT) Surat',
-        location: 'Surat, Gujarat, India',
-        period: '2022 - 2026',
-        currentYear: 'Third Year',
-        gpa: '7.66/10.0',
-        status: 'Currently Pursuing',
-        description: 'Specializing in machine learning, deep learning, computer vision, and natural language processing with strong foundations in mathematics and programming.',
-        skills: [
-          'Python', 'TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenCV',
-          'Pandas', 'NumPy', 'Matplotlib', 'SQL', 'Git', 'Docker'
-        ]
-      },
-      {
-        degree: 'Higher Secondary Education (Class XII)',
-        institution: 'Satyameva Jayate International School',
-        location: 'Ahmedabad, Gujarat, India',
-        period: '2022 - 2023',
-        status: 'Completed',
-        board: 'CBSE',
-        description: 'Science stream with focus on Mathematics, Physics, and Chemistry.',
-        gpa: '87%'
-      },
-      {
-        degree: 'Secondary Education (Class X)',
-        institution: 'Zydus School for Excellence',
-        location: 'Ahmedabad, Gujarat, India',
-        period: '2019 - 2020',
-        status: 'Completed',
-        board: 'ICSE',
-        description: 'Completed foundational education with emphasis on core subjects.',
-        gpa: '97%'
-
-      }
-    ];
-
-
-
-
-
-  return (
-    <section id="education" className="section-padding bg-white relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-20 w-32 h-32 bg-blue-50 rounded-full opacity-40 animate-float-3d transform-3d"></div>
-        <div className="absolute bottom-1/3 right-20 w-24 h-24 bg-teal-50 rounded-full opacity-50 animate-float-delayed transform-3d"></div>
-      </div>
-
-      <div className="container-responsive relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
-          <h2 className="text-responsive-lg font-bold text-gray-900 mb-6 will-change-transform">
-            Education
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto rounded-full animate-expand animation-delay-300"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto">
-          {/* Main Education Card */}
-          {education.map((edu, index) => (
-            <div
-              key={index}
-              className="card-interactive p-6 sm:p-8 mb-8 sm:mb-12 hover-card-3d transform-3d animate-scale-in will-change-transform"
-              style={{ animationDelay: `${400 + index * 200}ms` }}
-            >
-              <div className="space-responsive-y">
-                {/* Left Column - Main Info */}
-                <div className="space-responsive-y">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-3 sm:mb-2">
-                        <div className="p-2 sm:p-3 bg-blue-100 rounded-full hover-icon-3d transform-3d">
-                          <GraduationCap size={20} className="text-blue-600 icon-interactive" />
-                        </div>
-                        <div>
-                          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 will-change-transform">{edu.degree}</h3>
-                          <p className="text-base sm:text-lg text-blue-600 font-semibold">{edu.institution}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 text-gray-600">
-                        <div className="flex items-center space-x-1 hover-lift transform-3d">
-                          <Calendar size={14} />
-                          <span className="text-xs sm:text-sm">{edu.period}</span>
-                        </div>
-                        <div className="flex items-center space-x-1 hover-lift transform-3d">
-                          <MapPin size={14} />
-                          <span className="text-xs sm:text-sm">{edu.location}</span>
-                        </div>
-                        {edu.board && (
-                          <span className="bg-blue-100 text-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover-tilt transform-3d transition-all duration-300">
-                            {edu.board}
-                          </span>
-                        )}
-                        <span className="bg-green-100 text-green-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium hover-tilt transform-3d transition-all duration-300">
-                          {edu.status}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {edu.currentYear && (
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed animate-fade-in-up animation-delay-600">{edu.description}</p>
-                  )}
-
-                  {/* Academic Details */}
-                  <div className="grid grid-cols-1 gap-4 sm:gap-6">
-                    <div className="space-y-2 sm:space-y-3 animate-fade-in-up animation-delay-700">
-                      {edu.currentYear && (
-                        <h4 className="font-semibold text-gray-900 flex items-center space-x-2 text-sm sm:text-base">
-                          <BookOpen size={16} className="text-blue-600 icon-interactive" />
-                          <span>Current Status</span>
-                        </h4>
-                      )}
-                      <div className="space-y-1 sm:space-y-2">
-                        {edu.currentYear && (
-                          <p className="text-sm sm:text-base text-gray-600">Year: <span className="font-medium text-gray-900">{edu.currentYear}</span></p>
-                        )}
-                        <p className="text-sm sm:text-base text-gray-600">{edu.currentYear ? 'CGPA' : 'Grade'}: <span className="font-medium text-blue-600 hover-lift transform-3d transition-all duration-300">{edu.gpa}</span></p>
-                      </div>
-                    </div>
-
-
-                  </div>
-                </div>
-
-                {/* Right Column - Skills & Quick Stats */}
-              </div>
-
-
-            </div>
-          ))}
-
-
-        </div>
-      </div>
-    </section>
-  );
+type Entry = {
+  score: string;
+  scoreLabel: string;
+  degree: string;
+  institution: string;
+  meta: string;
+  description?: string;
+  chips?: string[];
+  featured?: boolean;
 };
+
+const EDUCATION: Entry[] = [
+  {
+    score: '7.66',
+    scoreLabel: 'CGPA / 10.0',
+    degree: 'Bachelor of Technology in Artificial Intelligence',
+    institution: 'National Institute of Technology (NIT) Surat',
+    meta: '2022 – 2026 · Third Year · Currently Pursuing',
+    description:
+      'Specializing in machine learning, deep learning, computer vision and natural language processing, with strong foundations in mathematics and programming.',
+    chips: ['Python', 'TensorFlow', 'PyTorch', 'OpenCV', 'SQL', 'Docker'],
+    featured: true,
+  },
+  {
+    score: '87%',
+    scoreLabel: 'CBSE aggregate',
+    degree: 'Higher Secondary (Class XII), Science',
+    institution: 'Satyameva Jayate International School',
+    meta: 'Ahmedabad · 2022 – 2023',
+  },
+  {
+    score: '97%',
+    scoreLabel: 'ICSE aggregate',
+    degree: 'Secondary (Class X)',
+    institution: 'Zydus School for Excellence',
+    meta: 'Ahmedabad · 2019 – 2020',
+  },
+];
+
+const Education = () => (
+  <section id="education" className="band bg-paper">
+    <div className="shell">
+      <SectionHeading title="Education" />
+
+      <div className="mx-auto flex max-w-[62rem] flex-col gap-[18px]">
+        {EDUCATION.map((entry, i) => (
+          <Reveal key={entry.degree} delay={i * 80}>
+            <article
+              data-lift=""
+              className={`grid grid-cols-1 items-center gap-[18px] rounded-2xl border border-line shadow-lg card:grid-cols-[150px_minmax(0,1fr)] card:gap-7 ${
+                entry.featured
+                  ? 'grad-tint-135 p-7 card:p-8'
+                  : 'bg-surface p-7 card:px-8 card:py-7'
+              }`}
+            >
+              <p className="text-left card:text-center">
+                <span
+                  className={`block text-[2rem] font-bold leading-none tracking-[-.03em] ${
+                    entry.featured ? 'text-accent' : 'text-accent-2'
+                  }`}
+                >
+                  {entry.score}
+                </span>
+                <span className="mt-2 block text-[.72rem] font-bold uppercase tracking-[.12em] text-muted">
+                  {entry.scoreLabel}
+                </span>
+              </p>
+
+              <div className="min-w-0 border-t border-line pt-[18px] card:border-l card:border-t-0 card:pl-8 card:pt-0">
+                <h3 className="text-[1.15rem] font-bold tracking-[-.02em] text-ink">
+                  {entry.degree}
+                </h3>
+                <p
+                  className={`mt-2.5 font-semibold text-accent ${
+                    entry.featured ? 'text-base' : 'text-[.92rem]'
+                  }`}
+                >
+                  {entry.institution}
+                </p>
+                <p className="mt-2 text-[.92rem] text-soft">{entry.meta}</p>
+
+                {entry.description && (
+                  <p className="mt-4 text-base leading-[1.7] text-muted">{entry.description}</p>
+                )}
+
+                {entry.chips && (
+                  <div className="mt-4 flex flex-wrap gap-[7px]">
+                    {entry.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        data-chip=""
+                        className="rounded-full bg-chip px-[11px] py-[5px] text-[.72rem] font-medium text-muted"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default Education;
