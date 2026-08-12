@@ -8,7 +8,8 @@ type Role = {
   kind: string;
   title: string;
   company: string;
-  logo: string;
+  /** Omit when there is no logo file; the tile falls back to initials. */
+  logo?: string;
   description: string;
   achievements: string[];
   technologies?: string[];
@@ -16,23 +17,12 @@ type Role = {
   featured?: boolean;
 };
 
-/* Order follows the design source's own sequence. */
+/**
+ * Chronological, earliest first, so the "Where it started" → "Open to 2026
+ * roles" bookends describe a real arc. Accenture stays on the right of the rail
+ * so its accent border faces inward.
+ */
 const ROLES: Role[] = [
-  {
-    period: 'Sep 2025 – Present',
-    kind: 'Campus leadership',
-    title: 'AI/ML Lead',
-    company: 'GDGC NIT Surat · Surat',
-    logo: '/logos/gdgc.png',
-    description:
-      'Leading AI/ML initiatives at Google Developer Groups on Campus NIT Surat — organizing workshops, conducting sessions and guiding students in machine learning and artificial intelligence.',
-    achievements: [
-      'Organized and conducted AI/ML workshops and technical sessions for students',
-      'Mentored team members in machine learning, deep learning and AI technologies',
-      'Collaborated with Google Developer Student Clubs to promote AI/ML education on campus',
-    ],
-    side: 'left',
-  },
   {
     period: 'May 2025 – Jul 2025',
     kind: 'Internship',
@@ -48,7 +38,6 @@ const ROLES: Role[] = [
     ],
     technologies: ['Python', 'LangChain', 'LangGraph', 'MCP', 'CrewAI', 'n8n', 'OpenAI'],
     side: 'right',
-    featured: true,
   },
   {
     period: 'Jul 2025 – Present',
@@ -65,7 +54,63 @@ const ROLES: Role[] = [
     ],
     side: 'left',
   },
+  {
+    period: 'Sep 2025 – Present',
+    kind: 'Campus leadership',
+    title: 'AI/ML Lead',
+    company: 'GDGC NIT Surat · Surat',
+    logo: '/logos/gdgc.png',
+    description:
+      'Leading AI/ML initiatives at Google Developer Groups on Campus NIT Surat — organizing workshops, conducting sessions and guiding students in machine learning and artificial intelligence.',
+    achievements: [
+      'Organized and conducted AI/ML workshops and technical sessions for students',
+      'Mentored team members in machine learning, deep learning and AI technologies',
+      'Collaborated with Google Developer Student Clubs to promote AI/ML education on campus',
+    ],
+    side: 'right',
+  },
+  {
+    period: 'Dec 2025 – Feb 2026',
+    kind: 'Internship',
+    title: 'AI & Automation Intern',
+    company: 'Clint',
+    description:
+      'Designed and shipped agentic automation for research and outreach — from multi-agent orchestration through to production calling assistants.',
+    achievements: [
+      'Built multi-agent workflows with LangGraph and CrewAI, coordinating agents across retrieval, synthesis and action for research and outreach',
+      'Shipped AI calling assistants, RAG chatbots and lead-scraping pipelines that replaced manual prospecting end to end',
+    ],
+    technologies: ['LangGraph', 'CrewAI', 'RAG', 'Multi-agent systems', 'Web scraping'],
+    side: 'left',
+  },
+  {
+    period: 'Mar 2026 – Jul 2026',
+    kind: 'Internship',
+    title: 'AI Intern',
+    company: 'WombTo18 Integrated Care Pvt. Ltd.',
+    description:
+      'Worked on the AI layer of a live healthcare product, from clinical document understanding through to the patient-facing conversational experience.',
+    achievements: [
+      'Built an OCR + AI extraction pipeline turning scanned lab reports and prescriptions into structured, queryable patient records on a live healthcare product',
+      'Added RAG retrieval over the extracted corpus and shipped the conversational layer — chatbots and voicebots — into core patient-facing workflows',
+      'Grounded assistant responses in real clinical records rather than model priors, cutting hallucinated answers in production',
+    ],
+    technologies: ['OCR', 'RAG', 'LLMs', 'Chatbots', 'Voicebots'],
+    side: 'right',
+    featured: true,
+  },
 ];
+
+/** "Accenture · Remote" → "A"; "Nexus Cell SVNIT · Surat" → "NC". */
+const initials = (company: string) =>
+  company
+    .split('·')[0]
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
 
 const CURVES = {
   left: 'M50,0 C50,26 24,34 24,50 C24,66 50,74 50,100',
@@ -89,7 +134,7 @@ const Connector = ({ dir }: { dir: keyof typeof CURVES }) => (
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
       aria-hidden="true"
-      className="hidden h-[120px] w-full overflow-visible card:block"
+      className="hidden h-16 w-full overflow-visible card:block"
     >
       {[
         { width: 15, opacity: 0.16, dash: undefined },
@@ -176,16 +221,22 @@ const RoleCard = ({ role }: { role: Role }) => (
 
     <div className="mt-3.5 flex items-start gap-3.5">
       <span
-        className={`flex shrink-0 items-center justify-center rounded-xl bg-chip ${
-          role.featured ? 'h-[52px] w-[52px] p-2' : 'h-12 w-12 p-[7px]'
+        className={`flex shrink-0 items-center justify-center rounded-xl ${
+          role.logo ? 'bg-chip' : 'grad-fill-135 text-white'
+        } ${role.featured ? 'h-[52px] w-[52px]' : 'h-12 w-12'} ${
+          role.logo ? (role.featured ? 'p-2' : 'p-[7px]') : ''
         }`}
       >
-        <img
-          src={role.logo}
-          alt={role.company}
-          loading="lazy"
-          className="block max-h-full max-w-full object-contain"
-        />
+        {role.logo ? (
+          <img
+            src={role.logo}
+            alt={role.company}
+            loading="lazy"
+            className="block max-h-full max-w-full object-contain"
+          />
+        ) : (
+          <span className="text-[.92rem] font-bold tracking-[.02em]">{initials(role.company)}</span>
+        )}
       </span>
       <div>
         <h3 className="text-[1.15rem] font-bold text-ink">{role.title}</h3>
@@ -266,18 +317,20 @@ const Experience = () => (
           Where it started
         </Milestone>
 
-        <Connector dir="left" />
+        {/* Each curve leans toward the side the next card lands on, so the rail
+            stays in sync if the roles are ever reordered again. */}
+        <Connector dir={ROLES[0].side} />
 
         {ROLES.map((role, i) => (
           <div key={role.title}>
             <TimelineRow role={role} />
-            <Connector dir={i === 0 ? 'right' : i === 1 ? 'left' : 'straight'} />
+            <Connector dir={ROLES[i + 1]?.side ?? 'straight'} />
           </div>
         ))}
 
         <Milestone end>
           <Flag size={15} />
-          Open to 2026 roles
+          Open to new roles
         </Milestone>
       </div>
     </div>

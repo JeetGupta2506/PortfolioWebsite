@@ -10,13 +10,6 @@ const TYPE_MS = 85;
 const DELETE_MS = Math.max(20, TYPE_MS * 0.5);
 const HOLD_MS = 1100;
 
-const STATS = [
-  { label: 'Interned at', value: 'Accenture' },
-  { label: 'Studying', value: 'B.Tech AI' },
-  { label: 'Deployed', value: '4 projects' },
-  { label: 'Certified', value: 'IBM ×2' },
-];
-
 const SOCIALS = [
   { label: 'GitHub', href: 'https://github.com/JeetGupta2506', Icon: Github, external: true },
   {
@@ -77,14 +70,7 @@ const Hero = () => {
         <div className="grid grid-cols-1 items-center gap-9 wide:grid-cols-2 wide:gap-14">
           <div>
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-[.82rem] font-medium text-muted shadow-md">
-                <span className="h-[7px] w-[7px] animate-pulse-slow rounded-full bg-accent-2 [animation-duration:2.4s]" />
-                Available for 2026 roles
-              </span>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <h1 className="h1-fluid mt-[22px] font-bold text-ink">
+              <h1 className="h1-fluid font-bold text-ink">
                 <span className="mb-1.5 block">I&apos;m a</span>
                 <span className="grad-text block min-h-[1.2em]">
                   {typed}
@@ -98,30 +84,14 @@ const Hero = () => {
               </h1>
             </Reveal>
 
-            <Reveal delay={160}>
+            <Reveal delay={80}>
               <p className="mt-[22px] max-w-[38rem] text-[1.15rem] leading-[1.7] text-muted">
                 Transforming complex data into actionable insights and building intelligent systems
                 that drive business value through advanced analytics and machine learning.
               </p>
             </Reveal>
 
-            <Reveal delay={220}>
-              <dl className="mt-[30px] grid max-w-[38rem] grid-cols-2 gap-3 card:grid-cols-4">
-                {STATS.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-xl border border-line bg-surface px-3 py-3.5 shadow-md"
-                  >
-                    <dt className="whitespace-nowrap text-[.72rem] font-semibold uppercase tracking-[.1em] text-faint">
-                      {stat.label}
-                    </dt>
-                    <dd className="mt-[7px] text-base font-bold text-ink">{stat.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-
-            <Reveal delay={300}>
+            <Reveal delay={160}>
               <div className="mt-[30px] flex flex-wrap gap-3">
                 <button
                   type="button"
@@ -156,7 +126,7 @@ const Hero = () => {
               </div>
             </Reveal>
 
-            <Reveal delay={380}>
+            <Reveal delay={240}>
               <div className="mt-7 flex gap-3.5">
                 {SOCIALS.map(({ label, href, Icon, external }) => (
                   <a
